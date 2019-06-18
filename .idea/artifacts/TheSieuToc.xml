@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TheSieuToc">
+    <output-path>$PROJECT_DIR$/out/artifacts/TheSieuToc</output-path>
+    <root id="root">
+      <element id="archive" name="TheSieuToc.jar">
+        <element id="module-output" name="NapThe" />
+      </element>
+      <element id="archive" name="TheSieuToc with Dependency.zip">
+        <element id="archive" name="TheSieuToc.jar">
+          <element id="module-output" name="NapThe" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/src/libraries/ProtocolLib [Dev build].jar" />
+      </element>
+      <element id="archive" name="TheSieuToc.zip">
+        <element id="archive" name="TheSieuToc.jar">
+          <element id="module-output" name="NapThe" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

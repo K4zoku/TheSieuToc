@@ -1,0 +1,7 @@
+name: TheSieuToc
+version: ${project.version}
+main: me.takahatashun.napthe.thesieutoc.NapThe
+prefix: TheSieuToc
+authors: [TakahataShun]
+website: https://thesieutoc.net
+api-version: 1.13
