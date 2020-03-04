@@ -1,4 +1,4 @@
-# Product Name
+# TheSieuToc
 > A minecraft plugin that allows players donate via TheSieuTocAPI.
 
 ![](header.png)
@@ -10,7 +10,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: ${project.version}
+Config-Version: 2.0.0
 
 ########################################################################
 #       ________            _____ _               ______               #
