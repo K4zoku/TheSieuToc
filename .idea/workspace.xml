@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TheSieuToc" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YLGXIe371rRM3KrComanWwVTmc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/net/thesieutoc" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LXC\IdeaProjects\TheSieuToc\src\main\java\net\thesieutoc" />
+      <recent name="C:\Users\LXC\IdeaProjects\TheSieuToc\src\main\java\me\lxc\" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LXC\IdeaProjects\TheSieuToc\src\main\resources\ui\" />
+      <recent name="C:\Users\LXC\IdeaProjects\TheSieuToc\src\main\resources\ui" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TheSieuToc build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\LXC\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="" />
+      <created>1582714498912</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582714498912</updated>
+      <workItem from="1582714505077" duration="12453000" />
+      <workItem from="1582774944066" duration="2986000" />
+      <workItem from="1582801267417" duration="7277000" />
+      <workItem from="1582818657612" duration="150000" />
+      <workItem from="1582856076039" duration="12343000" />
+      <workItem from="1582952046957" duration="2992000" />
+      <workItem from="1583040632582" duration="2260000" />
+      <workItem from="1583321251859" duration="1217000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="643" y="320" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582714515002">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="643" y="320" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582714515002" />
+    <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="676" y="325" width="264" height="209" key="Github.ShareDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582818781736" />
+    <state x="280" y="5" key="SettingsEditor" timestamp="1583322127855">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
+    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582817866496" />
+    <state x="630" y="222" key="svn.repositoryBrowser" timestamp="1582817563542">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="630" y="222" key="svn.repositoryBrowser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582817563542" />
+  </component>
+</project>

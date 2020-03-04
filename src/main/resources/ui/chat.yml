@@ -1,0 +1,14 @@
+# /!\ Không thay đổi giá trị này
+Config-Version: ${project.version}
+
+Choose-Card-Type:
+  Text: '&b&l{Card_Type}'
+    Hover:
+      - '&b&lNạp thẻ {Card_Type}'
+      - '&aClick vào để chọn mệnh giá'
+
+Choose-Card-Amount:
+  Text: '&a{Card_Amount}₫'
+  Hover:
+    - '&b&lMệnh giá {Card_Amount}₫'
+    - '&aClick vào để bắt đầu nạp'
