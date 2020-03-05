@@ -4,12 +4,14 @@ import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeChat;
 import me.lxc.artxeapi.utils.ArtxeDebug;
 import me.lxc.artxeapi.utils.ArtxeTime;
+import me.lxc.thesieutoc.internal.DonorLog;
 import me.lxc.thesieutoc.internal.Settings;
 import net.thesieutoc.data.CardInfo;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,6 +31,7 @@ public final class TheSieuToc extends JavaPlugin {
 
     private ArtxeYAML settingsYml;
     private Settings settings;
+    private DonorLog donorLog;
     private ArtxeYAML messages;
     private List<Integer> amountList;
     public HashMap<Player, List<CardInfo>> queue;
@@ -40,7 +43,7 @@ public final class TheSieuToc extends JavaPlugin {
     @Override
     public void onEnable() {
         preStartup();
-
+        loadData();
     }
 
     @Override
@@ -66,11 +69,24 @@ public final class TheSieuToc extends JavaPlugin {
         settingsYml = new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings/general.yml");
         settingsYml.saveDefaultConfig();
         settings = new Settings(settingsYml);
+        donorLog = new DonorLog(settings);
         PluginDebug = new ArtxeDebug(this, settingsYml.getConfig().getBoolean("Debug", false));
     }
 
 
     public static TheSieuToc getInstance() {
         return instance;
+    }
+
+    public Settings getSettings() {
+        return this.settings;
+    }
+
+    public ArtxeYAML getMessages() {
+        return this.messages;
+    }
+
+    public DonorLog getDonorLog() {
+        return this.donorLog;
     }
 }
