@@ -1,5 +1,5 @@
 # /!\ Không thay đổi giá trị này
-Config-Version: 5.0.0
+Config-Version: 2.0.0
 
 Input-Serial: '&aNhập số Serial'
 Input-Pin: '&aNhập mã thẻ'
@@ -14,7 +14,7 @@ Fail: '&cNạp thẻ không thành công!'
 Missing-API-Info: '&cThiếu thông tin API'
 Reloaded: '&aCài đặt đã được nạp lại!'
 Checked: '&aCác thẻ trong hàng chờ đã được kiểm tra lại!'
-Sys-Err: '&4Có lỗi trong quá trình xử lý!'
+System-Error: '&4Có lỗi trong quá trình xử lý!'
 Only-Player: '&4Chỉ có người chơi mới có thể dùng lệnh này'
 No-Permission: '&4Bạn không có quyền dùng lệnh này'
 Invalid-Command: '&4Lệnh không xác định'

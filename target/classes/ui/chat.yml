@@ -1,5 +1,5 @@
 # /!\ Không thay đổi giá trị này
-Config-Version: 5.0.0
+Config-Version: 2.0.0
 
 Choose-Card-Type:
   Text: '&b&l{Card_Type}'
