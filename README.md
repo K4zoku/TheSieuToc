@@ -74,8 +74,8 @@ Card-Reward:
 
 ## Release History
 
-* 1.0.0
-    * Complete plugin for first time yay
+* ~~1.0.0~~
+    * ~~Complete plugin for first time yay~~
 * 1.0.3
     * Optimize code
 * 2.0.0
