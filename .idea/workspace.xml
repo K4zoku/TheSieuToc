@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +126,7 @@
       <workItem from="1583385264786" duration="585000" />
       <workItem from="1583387851510" duration="309000" />
       <workItem from="1583401274529" duration="9250000" />
-      <workItem from="1583470117670" duration="7548000" />
+      <workItem from="1583470117670" duration="8510000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -213,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583477187328</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add Badges">
+      <created>1583477808241</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1583477808241</updated>
+    </task>
+    <task id="LOCAL-00014" summary="change something">
+      <created>1583477907310</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1583477907310</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +261,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Remove ArtxeSQL.java" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="add Badges" />
+    <MESSAGE value="change something" />
+    <option name="LAST_COMMIT_MESSAGE" value="change something" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -264,38 +279,38 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583424822165" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1583477807545">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1583477906534">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583477807545" />
+    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583477906534" />
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582818781736" />
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom" timestamp="1583476345441">
+    <state width="1557" height="202" key="GridCell.Tab.0.bottom" timestamp="1583479609248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583476345441" />
-    <state width="1557" height="202" key="GridCell.Tab.0.center" timestamp="1583476345441">
+    <state width="1557" height="202" key="GridCell.Tab.0.bottom/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609248" />
+    <state width="1557" height="202" key="GridCell.Tab.0.center" timestamp="1583479609247">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.center/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583476345441" />
-    <state width="1557" height="202" key="GridCell.Tab.0.left" timestamp="1583476345441">
+    <state width="1557" height="202" key="GridCell.Tab.0.center/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609247" />
+    <state width="1557" height="202" key="GridCell.Tab.0.left" timestamp="1583479609247">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.left/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583476345441" />
-    <state width="1557" height="202" key="GridCell.Tab.0.right" timestamp="1583476345441">
+    <state width="1557" height="202" key="GridCell.Tab.0.left/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609247" />
+    <state width="1557" height="202" key="GridCell.Tab.0.right" timestamp="1583479609248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.right/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583476345441" />
+    <state width="1557" height="202" key="GridCell.Tab.0.right/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609248" />
     <state x="280" y="5" key="SettingsEditor" timestamp="1583322127855">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1583477812002">
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1583477910751">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583477812002" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583477910751" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

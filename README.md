@@ -24,7 +24,7 @@ Config-Version: 2.0.0
 #       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
 #      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
 #     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: ${project.version} | Author: LXC |                    #
+#                  | Version: 2.0.0 | Author: LXC |                    #
 #               | Copyright (c) 2018-2020 TheSieuToc |                 #
 ########################################################################
 
@@ -50,7 +50,7 @@ Card-Enabled:
   - 'Vinaphone'
   - 'Mobifone'
   - 'Vietnamobile'
-  - 'VCoin'
+  - 'Vcoin'
   - 'Zing'
   - 'Gate'
 

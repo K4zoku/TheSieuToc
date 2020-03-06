@@ -41,7 +41,7 @@ public class Settings {
         cardCheckPeriod = ArtxeTime.toTick(settings.getConfig().get("Card-Check-Period","10s"));
 
         cardEnable = settings.getConfig().getStringList("Card-Enabled");
-        if (cardEnable == null || cardEnable.isEmpty()) cardEnable = Arrays.asList("Viettel", "Vinaphone", "Mobifone", "Vietnamobile", "VCoin", "Zing", "Gate");
+        if (cardEnable == null || cardEnable.isEmpty()) cardEnable = Arrays.asList("Viettel", "Vinaphone", "Mobifone", "Vietnamobile", "Vcoin", "Zing", "Gate");
 
         donorLogFile = new File(settings.getConfig().get("Donor-Log-File").toString());
     }
