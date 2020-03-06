@@ -56,12 +56,12 @@ public class ArtxeYAML {
             return;
         }
 
-        final YamlConfiguration config;
+        final YamlConfiguration ymlConfig;
         if (isStrictlyUTF8()) {
-            config = YamlConfiguration.loadConfiguration(new InputStreamReader(configStream, StandardCharsets.UTF_8));
+            ymlConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(configStream, StandardCharsets.UTF_8));
         } else {
             final byte[] contents;
-            config = new YamlConfiguration();
+            ymlConfig = new YamlConfiguration();
             try {
                 contents = toByteArray(configStream);
             } catch (final IOException e) {
@@ -75,12 +75,12 @@ public class ArtxeYAML {
             }
 
             try {
-                config.loadFromString(text);
+                ymlConfig.loadFromString(text);
             } catch (final InvalidConfigurationException e) {
                 plugin.getLogger().log(Level.WARNING, "Cannot load " + (this.file != null ? this.file.getName() : "null") + " from jar");
             }
         }
-        this.config.setDefaults(config);
+        this.config.setDefaults(ymlConfig);
         try {
             this.config.load(this.file);
         } catch (FileNotFoundException e) {

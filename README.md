@@ -1,6 +1,16 @@
 # TheSieuToc
 > A minecraft plugin that allows players donate via TheSieuTocAPI.
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=alert_status)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=ncloc)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=code_smells)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=bugs)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+
 ![](header.png)
 
 ## Installation

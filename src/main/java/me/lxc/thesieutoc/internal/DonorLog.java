@@ -14,7 +14,7 @@ public class DonorLog {
     private File logFile;
 
     public DonorLog(Settings settings) {
-        this.logFile = settings.Donor_Log_File;
+        this.logFile = settings.donorLogFile;
     }
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {

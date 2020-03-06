@@ -18,11 +18,15 @@ public class CardCheckTask extends BukkitRunnable {
 
     public CardCheckTask(TheSieuToc instance) {
         this.instance = instance;
-        this.runTaskTimer(instance, 0L, instance.getSettings().Card_Check_Period);
+        this.runTaskTimer(instance, 0L, instance.getSettings().cardCheckPeriod);
     }
 
     @Override
     public void run() {
+        check(this.instance);
+    }
+
+    public static void check(TheSieuToc instance) {
         final FileConfiguration messages = instance.getMessages().getConfig();
         for(Map.Entry<Player, List<CardInfo>> playerCards: instance.queue.entrySet()){
             Player player = playerCards.getKey();
@@ -37,8 +41,8 @@ public class CardCheckTask extends BukkitRunnable {
                 String pin = card.pin;
                 int amount = card.amount;
                 JsonObject response = TheSieuTocAPI.checkCard(
-                        TheSieuToc.getInstance().getSettings().TheSieuToc_Key,
-                        TheSieuToc.getInstance().getSettings().TheSieuToc_Secret,
+                        TheSieuToc.getInstance().getSettings().iTheSieuToc_Key,
+                        TheSieuToc.getInstance().getSettings().iTheSieuTocSecret,
                         transactionID);
                 int status = response.get("status").getAsInt();
                 boolean isOnline = player.isOnline();

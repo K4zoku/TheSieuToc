@@ -13,11 +13,6 @@ public class ArtxeCommands {
         final String cmd = command.replaceAll(MATCH, "$2").replaceAll("(?ium)([{]player[}])", player.getName());
         final String type = command.replaceAll(MATCH, "$1".replace(":","").toLowerCase());
         switch (type){
-            case "":
-            case "player":
-            default:
-                player.performCommand(cmd);
-                break;
             case "op":
                 if(player.isOp()){
                     player.performCommand(cmd);
@@ -29,6 +24,11 @@ public class ArtxeCommands {
                 break;
             case "console":
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+                break;
+            case "":
+            case "player":
+            default:
+                player.performCommand(cmd);
                 break;
         }
     }
