@@ -1,7 +1,11 @@
 version: 2
-  jobs:
-    build:
-      docker:
-        - image: circleci/java:8-jdk
-      steps:
-        - checkout
+jobs:
+  build:
+    environment:
+      # Configure the JVM and Gradle to avoid OOM errors
+      _JAVA_OPTIONS: "-Xmx3g"
+    docker:
+      - image: circleci/java:8-jdk
+    steps:
+      - checkout
+      - mvn verify sonar:sonar
