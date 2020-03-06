@@ -41,7 +41,7 @@ public class CardCheckTask extends BukkitRunnable {
                 String pin = card.pin;
                 int amount = card.amount;
                 JsonObject response = TheSieuTocAPI.checkCard(
-                        TheSieuToc.getInstance().getSettings().iTheSieuToc_Key,
+                        TheSieuToc.getInstance().getSettings().iTheSieuTocKey,
                         TheSieuToc.getInstance().getSettings().iTheSieuTocSecret,
                         transactionID);
                 int status = response.get("status").getAsInt();
