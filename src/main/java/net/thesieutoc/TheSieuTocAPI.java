@@ -14,20 +14,23 @@ import java.util.stream.Collectors;
 import static me.lxc.thesieutoc.TheSieuToc.artxeDebug;
 
 public class TheSieuTocAPI {
+
+    private TheSieuTocAPI() {}
+
     private static final String API_SERVER = "https://thesieutoc.net";
     private static final String TRANSACTION = "API/transaction";
     private static final String CARD_CHARGING= "card_charging_api/check-status.html";
 
-    public static JsonObject sendCard(String APIKey, String APISecret, String pin, String serial, String cardType, int cardAmount) {
+    public static JsonObject sendCard(String apiKey, String apiSecret, String pin, String serial, String cardType, int cardAmount) {
         final String url = MessageFormat.format(
                 "{0}/{1}?APIkey={2}&APIsecret={3}&mathe={4}&seri={5}&type={6}&menhgia={7}",
-                API_SERVER, TRANSACTION, APIKey, APISecret, pin, serial, cardType, cardAmount);
+                API_SERVER, TRANSACTION, apiKey, apiSecret, pin, serial, cardType, cardAmount);
         return sendRequest(url);
     }
 
-    public static JsonObject checkCard(String APIKey, String APISecret, String transactionID) {
+    public static JsonObject checkCard(String apiKey, String apiSecret, String transactionID) {
         final String url = MessageFormat.format("{0}/{1}?APIkey={2}&APIsecret={3}&transaction_id={4}",
-                API_SERVER, CARD_CHARGING, APIKey, APISecret, transactionID);
+                API_SERVER, CARD_CHARGING, apiKey, apiSecret, transactionID);
         return sendRequest(url);
     }
 

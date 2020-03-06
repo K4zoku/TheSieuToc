@@ -47,22 +47,16 @@ public class CardCheckTask extends BukkitRunnable {
                 int status = response.get("status").getAsInt();
                 boolean isOnline = player.isOnline();
                 switch (status){
-                    case 0: {
-                        if(isOnline) player.sendMessage(messages.getString("Messages.Success").replaceAll("(?ium)[{]Amount[}]", String.valueOf(amount)));
-                        List<String> commands = TheSieuToc.getInstance().getSettings().yml().getConfig().getStringList("Card." + amount);
-                        for(String command : commands){
-                            ArtxeCommands.dispatchCommand(player, command);
-                        }
+                    case 0:
+                        successAction(isOnline, player, messages, amount);
                         notes = "";
                         success = true;
                         removeQueue.add(card);
                         break;
-                    }
-                    case -9: {
+                    case -9:
                         if(isOnline) player.sendMessage(messages.getString("Messages.Awaiting-Approval"));
                         return;
-                    }
-                    default: {
+                    default:
                         if(isOnline) {
                             player.sendMessage(messages.getString("Messages.Fail"));
                             player.sendMessage(response.get("msg").getAsString());
@@ -71,12 +65,19 @@ public class CardCheckTask extends BukkitRunnable {
                         notes = response.get("msg").getAsString();
                         removeQueue.add(card);
                         break;
-                    }
                 }
                 instance.getDonorLog().writeLog(player, serial, pin, type, amount, success, notes);
             }
             cards.removeAll(removeQueue);
             instance.queue.replace(player, cards);
+        }
+    }
+
+    private static void successAction(boolean isOnline, Player player, FileConfiguration messages, int amount) {
+        if(isOnline) player.sendMessage(messages.getString("Messages.Success").replaceAll("(?ium)[{]Amount[}]", String.valueOf(amount)));
+        List<String> commands = TheSieuToc.getInstance().getSettings().yml().getConfig().getStringList("Card." + amount);
+        for(String command : commands){
+            ArtxeCommands.dispatchCommand(player, command);
         }
     }
 }

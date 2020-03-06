@@ -19,14 +19,13 @@ public class DonorLog {
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {
         if (!(logFile.exists())) {
-            if (logFile.getParentFile().mkdir()) {
-                try {
-                    if (!logFile.createNewFile()) {
-                        return false;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+            logFile.getParentFile().mkdir();
+            try {
+                if (!logFile.createNewFile()) {
+                    return false;
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         Date dt = new Date();

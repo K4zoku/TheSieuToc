@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Settings {
-    private ArtxeYAML settings;
+    private ArtxeYAML settingsYml;
 
     public String configVersion;
 
@@ -24,30 +24,30 @@ public class Settings {
     public File donorLogFile;
 
     public Settings(ArtxeYAML settingsYML) {
-        this.settings = settingsYML;
+        this.settingsYml = settingsYML;
         reloadData();
 
     }
 
     public void reloadData() {
-        settings.reloadConfig();
-        configVersion = settings.getConfig().get("Config-Version").toString();
+        settingsYml.reloadConfig();
+        configVersion = settingsYml.getConfig().get("Config-Version").toString();
 
-        debug = settings.getConfig().getBoolean("Debug", false);
+        debug = settingsYml.getConfig().getBoolean("Debug", false);
 
-        iTheSieuTocKey = settings.getConfig().get("TheSieuToc.API-Key").toString();
-        iTheSieuTocSecret = settings.getConfig().get("TheSieuToc.API-Secret").toString();
+        iTheSieuTocKey = settingsYml.getConfig().get("TheSieuToc.API-Key").toString();
+        iTheSieuTocSecret = settingsYml.getConfig().get("TheSieuToc.API-Secret").toString();
 
-        cardCheckPeriod = ArtxeTime.toTick(settings.getConfig().get("Card-Check-Period","10s"));
+        cardCheckPeriod = ArtxeTime.toTick(settingsYml.getConfig().get("Card-Check-Period","10s"));
 
-        cardEnable = settings.getConfig().getStringList("Card-Enabled");
+        cardEnable = settingsYml.getConfig().getStringList("Card-Enabled");
         if (cardEnable == null || cardEnable.isEmpty()) cardEnable = Arrays.asList("Viettel", "Vinaphone", "Mobifone", "Vietnamobile", "Vcoin", "Zing", "Gate");
 
-        donorLogFile = new File(settings.getConfig().get("Donor-Log-File").toString());
+        donorLogFile = new File(settingsYml.getConfig().get("Donor-Log-File").toString());
     }
 
     public ArtxeYAML yml() {
-        return settings;
+        return settingsYml;
     }
 }
 
