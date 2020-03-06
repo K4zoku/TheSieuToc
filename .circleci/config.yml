@@ -1,13 +1,16 @@
-version: 2
+version: 2.1
 jobs:
   build:
-    environment:
-      # Configure the JVM and Gradle to avoid OOM errors
-      _JAVA_OPTIONS: "-Xmx3g"
     docker:
-      - image: circleci/java:8-jdk
+      - image: 'circleci/openjdk:11-jdk'
     steps:
       - checkout
       - run:
-          name: build project
+          name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
