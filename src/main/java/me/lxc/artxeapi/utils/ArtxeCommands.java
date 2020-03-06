@@ -4,6 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class ArtxeCommands {
+
+    private ArtxeCommands() {}
+
     private static final String MATCH = "(?ium)^(player:|op:|console:|)(.*)$";
 
     public static void dispatchCommand(Player player, String command) {
@@ -12,6 +15,7 @@ public class ArtxeCommands {
         switch (type){
             case "":
             case "player":
+            default:
                 player.performCommand(cmd);
                 break;
             case "op":

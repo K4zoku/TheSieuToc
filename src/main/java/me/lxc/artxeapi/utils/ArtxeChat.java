@@ -9,6 +9,8 @@ import org.bukkit.ChatColor;
 
 public final class ArtxeChat {
 
+    private ArtxeChat() {}
+
     public static TextComponent getTextComponent(HoverEvent.Action hover, BaseComponent[] hoverValue, ClickEvent.Action click, String clickValue, String text){
         TextComponent tc = new TextComponent(ChatColor.translateAlternateColorCodes('&', text));
         if(click != null && !clickValue.isEmpty()) {
