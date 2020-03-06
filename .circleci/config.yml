@@ -8,4 +8,6 @@ jobs:
       - image: circleci/java:8-jdk
     steps:
       - checkout
-      - mvn verify sonar:sonar
+      - run:
+          name: build project
+          command: mvn verify sonar:sonar
