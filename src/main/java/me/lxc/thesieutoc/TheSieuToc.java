@@ -11,15 +11,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public final class TheSieuToc extends JavaPlugin {
-    public static String PluginVersion;
-    public static ArtxeDebug PluginDebug;
+    public static String pluginVersion;
+    public static ArtxeDebug artxeDebug;
     public static final String PREFIX = "§6[§b§lTheSieuToc§6] §r";
 
     private static final String CMD = "donate";
@@ -52,13 +51,13 @@ public final class TheSieuToc extends JavaPlugin {
     }
 
     private void preStartup() {
-        PluginVersion = getDescription().getVersion();
+        pluginVersion = getDescription().getVersion();
         ArtxeChat.console("§b  ________            _____ _               ______");
         ArtxeChat.console("§b  /_  __/ /_  ___     / ___/(____  __  __   /_  ______  _____");
         ArtxeChat.console("§b   / / / __ \\/ _ \\    \\__ \\/ / _ \\/ / / /    / / / __ \\/ ___/");
         ArtxeChat.console("§b  / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__");
         ArtxeChat.console("§b /_/ /_/ /_/\\___/   /____/_/\\___/\\__._/    /_/  \\____/\\___/");
-        ArtxeChat.console("               §f| §bVersion: §6" + PluginVersion + " §f| §bAuthor: §6LXC §f|");
+        ArtxeChat.console("               §f| §bVersion: §6" + pluginVersion + " §f| §bAuthor: §6LXC §f|");
         ArtxeChat.console("            §f| §aCopyright (c) 2018-" + ArtxeTime.getCurrentYear() + " §bTheSieuToc §f|");
         instance = this;
         amountList = new ArrayList<>();
@@ -70,7 +69,7 @@ public final class TheSieuToc extends JavaPlugin {
         settingsYml.saveDefaultConfig();
         settings = new Settings(settingsYml);
         donorLog = new DonorLog(settings);
-        PluginDebug = new ArtxeDebug(this, settingsYml.getConfig().getBoolean("Debug", false));
+        artxeDebug = new ArtxeDebug(this, settingsYml.getConfig().getBoolean("Debug", false));
     }
 
 

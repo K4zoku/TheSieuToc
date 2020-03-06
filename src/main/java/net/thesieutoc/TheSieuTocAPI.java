@@ -2,8 +2,6 @@ package net.thesieutoc;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import static me.lxc.thesieutoc.TheSieuToc.PluginDebug;
-import me.lxc.thesieutoc.TheSieuToc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.stream.Collectors;
+
+import static me.lxc.thesieutoc.TheSieuToc.artxeDebug;
 
 public class TheSieuTocAPI {
     private static final String API_SERVER = "https://thesieutoc.net";
@@ -42,7 +42,7 @@ public class TheSieuTocAPI {
             final String response = reader.lines().collect(Collectors.joining());
             return new JsonParser().parse(response).getAsJsonObject();
         } catch (IOException e){
-            PluginDebug.debug("An error occurred: " + e.getCause().getMessage());
+            artxeDebug.debug("An error occurred: " + e.getCause().getMessage());
             return null;
         }
 

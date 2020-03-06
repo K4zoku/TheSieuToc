@@ -90,12 +90,12 @@ public class ArtxeYAML {
         }
     }
     public void saveDefaultConfig() {
-        if(this.file == null || !(this.file.exists())){
+        if(!(this.file.exists())){
             try {
                 plugin.getLogger().log(Level.WARNING, this.file.getName() + " not found, copying defaults...");
                 this.plugin.saveResource(this.internalPath, false);
             } catch (NullPointerException ex) {
-                plugin.getLogger().log(Level.SEVERE, "File " + (this.file != null ? this.file.getName() : "null") + " in jar not found");
+                plugin.getLogger().log(Level.SEVERE, "File " + this.file.getName() + " in jar not found");
             }
         }
     }

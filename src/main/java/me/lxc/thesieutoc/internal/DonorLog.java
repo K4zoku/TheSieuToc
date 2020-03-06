@@ -11,17 +11,17 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DonorLog {
-    private File donorLog;
+    private File logFile;
 
     public DonorLog(Settings settings) {
-        this.donorLog = settings.Donor_Log_File;
+        this.logFile = settings.Donor_Log_File;
     }
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {
-        if (!(donorLog.exists())) {
-            if (donorLog.getParentFile().mkdir()) {
+        if (!(logFile.exists())) {
+            if (logFile.getParentFile().mkdir()) {
                 try {
-                    if (!donorLog.createNewFile()) {
+                    if (!logFile.createNewFile()) {
                         return false;
                     }
                 } catch (IOException e) {
@@ -33,7 +33,7 @@ public class DonorLog {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         String name = p.getName();
         df.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
-        try (FileWriter fw = new FileWriter(donorLog, true); BufferedWriter bw = new BufferedWriter(fw)) {
+        try (FileWriter fw = new FileWriter(logFile, true); BufferedWriter bw = new BufferedWriter(fw)) {
             bw.append(
                     df.format(dt)).
                     append(" | NAME ").append(name).
