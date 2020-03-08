@@ -2,10 +2,10 @@
 > A minecraft plugin that allows players donate via TheSieuTocAPI.
 
 [![CircleCi Status](https://circleci.com/gh/takahatashun/TheSieuToc.svg?style=shield)](https://circleci.com/gh/takahatashun/TheSieuToc)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=alert_status)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=takahatashun_TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=alert_status)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=takahatashun_TheSieuToc)
 
 ![](header.png)
 
