@@ -3,9 +3,7 @@ package me.lxc.thesieutoc;
 import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeDebug;
 import me.lxc.artxeapi.utils.ArtxeTime;
-import me.lxc.thesieutoc.internal.Commands;
-import me.lxc.thesieutoc.internal.DonorLog;
-import me.lxc.thesieutoc.internal.Settings;
+import me.lxc.thesieutoc.internal.*;
 import net.thesieutoc.data.CardInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
@@ -36,7 +34,8 @@ public final class TheSieuToc extends JavaPlugin {
 
     private Settings settings;
     private DonorLog donorLog;
-    private ArtxeYAML messages;
+    private Messages messages;
+    private Ui ui;
     private List<Integer> amountList;
     public HashMap<Player, List<CardInfo>> queue;
 
@@ -53,7 +52,7 @@ public final class TheSieuToc extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Nothing Here?
     }
 
     private void preStartup() {
@@ -71,13 +70,25 @@ public final class TheSieuToc extends JavaPlugin {
     }
 
     public void loadData() {
-        ArtxeYAML settingsYml = new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings/general.yml");
-        settingsYml.saveDefaultConfig();
-        settings = new Settings(settingsYml);
+        settings = new Settings(new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings/general.yml"));
         hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
-        donorLog = new DonorLog(settings);
-        artxeDebug = new ArtxeDebug(this, settingsYml.getConfig().getBoolean("Debug", false));
-        messages = new ArtxeYAML(this, getDataFolder() + File.separator + "languages", "messages.yml", "languages/messages.yml");
+        donorLog = new DonorLog(settings.donorLogFile);
+        artxeDebug = new ArtxeDebug(this, settings.debug);
+        messages = new Messages(new ArtxeYAML(this, getDataFolder() + File.separator + "languages", "messages.yml", "languages/messages.yml"));
+        ui = new Ui(new ArtxeYAML(this, getDataFolder() + File.separator + "ui", "chat.yml", "ui/chat.yml"));
+    }
+
+    public void reload(short type) {
+        switch (type) {
+            case 1: settings.reload(); break;
+            case 2: messages.reload(); break;
+            case 3: ui.reload(); break;
+            default:
+                settings.reload();
+                messages.reload();
+                ui.reload();
+                break;
+        }
     }
 
     private void registerCommands() {
@@ -100,8 +111,12 @@ public final class TheSieuToc extends JavaPlugin {
         return this.settings;
     }
 
-    public ArtxeYAML getMessages() {
+    public Messages getMessages() {
         return this.messages;
+    }
+
+    public Ui getUi() {
+        return this.ui;
     }
 
     public DonorLog getDonorLog() {

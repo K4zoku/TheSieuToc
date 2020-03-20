@@ -3,9 +3,9 @@ package me.lxc.thesieutoc.tasks;
 import com.google.gson.JsonObject;
 import me.lxc.artxeapi.utils.ArtxeCommands;
 import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thesieutoc.internal.Messages;
 import net.thesieutoc.TheSieuTocAPI;
 import net.thesieutoc.data.CardInfo;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -27,7 +27,7 @@ public class CardCheckTask extends BukkitRunnable {
     }
 
     public static void check(TheSieuToc instance) {
-        final FileConfiguration messages = instance.getMessages().getConfig();
+        final Messages messages = instance.getMessages();
         for(Map.Entry<Player, List<CardInfo>> playerCards: instance.queue.entrySet()){
             Player player = playerCards.getKey();
             List<CardInfo> cards = playerCards.getValue();
@@ -40,13 +40,10 @@ public class CardCheckTask extends BukkitRunnable {
                 String serial = card.serial;
                 String pin = card.pin;
                 int amount = card.amount;
-                JsonObject response = TheSieuTocAPI.checkCard(
-                        TheSieuToc.getInstance().getSettings().iTheSieuTocKey,
-                        TheSieuToc.getInstance().getSettings().iTheSieuTocSecret,
-                        transactionID);
+                JsonObject response = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, transactionID);
                 int status = response.get("status").getAsInt();
                 boolean isOnline = player.isOnline();
-                switch (status){
+                switch (status) {
                     case 0:
                         successAction(isOnline, player, messages, amount);
                         notes = "";
@@ -54,11 +51,11 @@ public class CardCheckTask extends BukkitRunnable {
                         removeQueue.add(card);
                         break;
                     case -9:
-                        if(isOnline) player.sendMessage(messages.getString("Messages.Awaiting-Approval"));
+                        if(isOnline) player.sendMessage(messages.awaitingApproval);
                         return;
                     default:
                         if(isOnline) {
-                            player.sendMessage(messages.getString("Messages.Fail"));
+                            player.sendMessage(messages.fail);
                             player.sendMessage(response.get("msg").getAsString());
                         }
                         success = false;
@@ -73,9 +70,9 @@ public class CardCheckTask extends BukkitRunnable {
         }
     }
 
-    private static void successAction(boolean isOnline, Player player, FileConfiguration messages, int amount) {
-        if(isOnline) player.sendMessage(messages.getString("Messages.Success").replaceAll("(?ium)[{]Amount[}]", String.valueOf(amount)));
-        List<String> commands = TheSieuToc.getInstance().getSettings().yml().getConfig().getStringList("Card." + amount);
+    private static void successAction(boolean isOnline, Player player, Messages messages, int amount) {
+        if(isOnline) player.sendMessage(messages.success.replaceAll("(?ium)[{]Amount[}]", String.valueOf(amount)));
+        List<String> commands = TheSieuToc.getInstance().getSettings().yaml().getConfig().getStringList("Card." + amount);
         for(String command : commands){
             ArtxeCommands.dispatchCommand(player, command);
         }

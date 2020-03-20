@@ -11,10 +11,10 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DonorLog {
-    private File logFile;
+    public File logFile;
 
-    public DonorLog(Settings settings) {
-        this.logFile = settings.donorLogFile;
+    public DonorLog(File logFile) {
+        this.logFile = logFile;
     }
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {

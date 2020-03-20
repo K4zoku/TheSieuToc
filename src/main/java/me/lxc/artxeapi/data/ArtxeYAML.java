@@ -1,5 +1,7 @@
 package me.lxc.artxeapi.data;
 
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,6 +12,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 
 import static com.google.common.io.ByteStreams.toByteArray;
@@ -29,12 +32,14 @@ public class ArtxeYAML {
             this.internalPath = internalPath + File.separator + filename;
         }
         this.config = null;
+        saveDefaultConfig();
     }
 
     public ArtxeYAML(String filepath, String filename) {
         this.file = new File(filepath, filename);
         this.internalPath = filename;
         this.config = null;
+        saveDefaultConfig();
     }
 
     public File getFile() {
@@ -49,7 +54,7 @@ public class ArtxeYAML {
     }
 
     public void reloadConfig() {
-        this.config = YamlConfiguration.loadConfiguration(file);
+        this.config = formatConfig(YamlConfiguration.loadConfiguration(file));
 
         final InputStream configStream = this.plugin.getResource(this.internalPath);
         if (configStream == null) {
@@ -98,6 +103,16 @@ public class ArtxeYAML {
                 plugin.getLogger().log(Level.SEVERE, "File " + this.file.getName() + " in jar not found");
             }
         }
+    }
+
+    private static <T extends ConfigurationSection> T formatConfig(T section){
+        Set<String> keys = section.getKeys(true);
+        for(String key : keys){
+            Object value = section.get(key);
+            if(value instanceof String)
+                section.set(key, ChatColor.translateAlternateColorCodes('&', (String) value));
+        }
+        return section;
     }
 
     private boolean isStrictlyUTF8() {

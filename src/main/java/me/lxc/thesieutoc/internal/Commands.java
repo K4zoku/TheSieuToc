@@ -1,8 +1,8 @@
 package me.lxc.thesieutoc.internal;
 
-import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeNumber;
 import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thesieutoc.handlers.InputCardHandler;
 import me.lxc.thesieutoc.tasks.CardCheckTask;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -25,7 +25,8 @@ public class Commands extends BukkitCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-        final ArtxeYAML msg = TheSieuToc.getInstance().getMessages();
+        final Messages msg = TheSieuToc.getInstance().getMessages();
+        final Ui ui = TheSieuToc.getInstance().getUi();
         final boolean isPlayer = sender instanceof Player;
         final Player player = isPlayer ? (Player) sender : null;
         final boolean hasAPIInfo = TheSieuToc.getInstance().hasAPIInfo;
@@ -34,11 +35,11 @@ public class Commands extends BukkitCommand {
             case 0:
                 if(isPlayer){
                     if(hasAPIInfo) {
-                        chooseCard(player, msg);
+                        chooseCard(player, ui);
                         return true;
                     } else return false;
                 } else {
-                    sender.sendMessage(msg.getConfig().getString("Messages.Only-Player"));
+                    sender.sendMessage(msg.onlyPlayer);
                     return false;
                 }
             case 1:
@@ -48,10 +49,10 @@ public class Commands extends BukkitCommand {
                     case "choose":
                         if(hasAPIInfo) {
                             if (isPlayer) {
-                                chooseCard(player, msg);
+                                chooseCard(player, ui);
                                 return true;
                             } else {
-                                sender.sendMessage(msg.getConfig().getString("Messages.Only-Player"));
+                                sender.sendMessage(msg.onlyPlayer);
                                 return false;
                             }
                         } else return false;
@@ -60,7 +61,7 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     default:
-                        sender.sendMessage(msg.getConfig().getString("Messages.Invalid-Command"));
+                        sender.sendMessage(msg.invalidCommand);
                         return false;
                 }
             case 2:
@@ -70,15 +71,15 @@ public class Commands extends BukkitCommand {
                             if(hasAPIInfo) {
                                 if (isValidCard(args[1])) {
                                     String type = args[1];
-                                    chooseAmount(player, type, msg);
+                                    chooseAmount(player, type, ui);
                                     return true;
                                 } else {
-                                    sender.sendMessage(msg.getConfig().getString("Messages.Invalid-Card-Type"));
+                                    sender.sendMessage(msg.invalidCardType);
                                     return false;
                                 }
                             } else return false;
                         } else {
-                            sender.sendMessage(msg.getConfig().getString("Messages.Only-Player"));
+                            sender.sendMessage(msg.onlyPlayer);
                             return false;
                         }
                     case "reload":
@@ -88,7 +89,7 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     default:
-                        sender.sendMessage(msg.getConfig().getString("Messages.Invalid-Command"));
+                        sender.sendMessage(msg.invalidCommand);
                         return false;
                 }
             case 3:
@@ -99,23 +100,22 @@ public class Commands extends BukkitCommand {
                                 if (isValidCard(args[1])) {
                                     if (ArtxeNumber.isInteger(args[2])) {
                                         if (isValidAmount(Integer.parseInt(args[2]))) {
-                                            
-                                            //CardHandler.triggerInputSignCard(player, args[1], Integer.parseInt(args[2]), msg);
+                                            InputCardHandler.triggerStepOne(player, args[1], Integer.parseInt(args[2]));
                                             return true;
                                         } else {
                                             return false;
                                         }
                                     } else {
-                                        sender.sendMessage(msg.getConfig().getString("Messages.Not-Number").replaceAll("(?ium)[{]0[}]", args[2]));
+                                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
                                         return false;
                                     }
                                 } else {
-                                    sender.sendMessage(msg.getConfig().getString("Messages.Invalid-Card-Type"));
+                                    sender.sendMessage(msg.invalidCardType);
                                     return false;
                                 }
                             } else return false;
                         } else {
-                            sender.sendMessage(msg.getConfig().getString("Messages.Only-Player"));
+                            sender.sendMessage(msg.onlyPlayer);
                             return false;
                         }
                     case "reload":
@@ -125,51 +125,52 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     default:
-                        sender.sendMessage(msg.getConfig().getString("Messages.Invalid-Command"));
+                        sender.sendMessage(msg.invalidCommand);
                         return false;
                 }
             default:
-                sender.sendMessage(msg.getConfig().getString("Messages.Too-Many-Args"));
+                sender.sendMessage(msg.tooManyArgs);
                 return false;
         }
     }
 
-    private boolean reload(CommandSender sender, int arg, ArtxeYAML msg){
+    private boolean reload(CommandSender sender, int arg, Messages msg){
         if(sender.hasPermission("napthe.admin.reload")){
             if(arg == 1){
-                TheSieuToc.getInstance().loadData();
-                sender.sendMessage(msg.getConfig().getString("Messages.Reloaded"));
+                TheSieuToc.getInstance().reload((short) 0);
+                sender.sendMessage(msg.reloaded);
                 return true;
             } else {
-                sender.sendMessage(msg.getConfig().getString("Messages.Too-Many-Args"));
+                // TODO: add more reload type
+                sender.sendMessage(msg.tooManyArgs);
                 return false;
             }
         } else {
-            sender.sendMessage(msg.getConfig().getString("Messages.No-Permission"));
+            sender.sendMessage(msg.noPermission);
             return false;
         }
     }
 
-    private boolean check(CommandSender sender, int arg, ArtxeYAML msg){
+    private boolean check(CommandSender sender, int arg, Messages msg){
         if(sender.hasPermission("napthe.admin.check")){
             if(arg == 1){
                 CardCheckTask.check(TheSieuToc.getInstance());
-                sender.sendMessage(msg.getConfig().getString("Messages.Checked"));
+                sender.sendMessage(msg.checked);
                 return true;
             } else {
-                sender.sendMessage(msg.getConfig().getString("Messages.Too-Many-Args"));
+                sender.sendMessage(msg.tooManyArgs);
                 return false;
             }
         } else {
-            sender.sendMessage(msg.getConfig().getString("Messages.No-Permission"));
+            sender.sendMessage(msg.noPermission);
             return false;
         }
     }
 
-    private void chooseCard(Player player, ArtxeYAML msg){
+    private void chooseCard(Player player, Ui ui){
         for(String card : TheSieuToc.cardList){
-            String text = msg.getConfig().getString("Chat-Gui.Card-Type.Text").replaceAll("(?ium)[{]Card_Type[}]", card);
-            String hover = splitListToLine(msg.getConfig().getStringList("Chat-Gui.Card-Type.Hover")).replaceAll("(?ium)[{]Card_Type[}]", card);
+            String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
+            String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
             BaseComponent[] message = new ComponentBuilder(text)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
                     .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/napthe choose {0}", card)))
@@ -178,10 +179,10 @@ public class Commands extends BukkitCommand {
         }
     }
 
-    private void chooseAmount(Player player, String type, ArtxeYAML msg){
+    private void chooseAmount(Player player, String type, Ui ui){
         for(Integer amount : TheSieuToc.getInstance().getAmountList()){
-            String text = msg.getConfig().getString("Chat-Gui.Card-Amount.Text").replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
-            String hover = splitListToLine(msg.getConfig().getStringList("Chat-Gui.Card-Amount.Hover")).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
+            String text = ui.cardAmountText.replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
+            String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
                     .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/napthe choose {0} {1}", type, amount.toString())))

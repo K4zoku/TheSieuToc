@@ -21,7 +21,7 @@ public class TheSieuTocAPI {
     private static final String TRANSACTION = "API/transaction";
     private static final String CARD_CHARGING= "card_charging_api/check-status.html";
 
-    public static JsonObject sendCard(String apiKey, String apiSecret, String pin, String serial, String cardType, int cardAmount) {
+    public static JsonObject sendCard(String apiKey, String apiSecret, String cardType, int cardAmount, String serial, String pin) {
         final String url = MessageFormat.format(
                 "{0}/{1}?APIkey={2}&APIsecret={3}&mathe={4}&seri={5}&type={6}&menhgia={7}",
                 API_SERVER, TRANSACTION, apiKey, apiSecret, pin, serial, cardType, cardAmount);

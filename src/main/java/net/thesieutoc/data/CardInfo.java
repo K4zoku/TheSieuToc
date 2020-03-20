@@ -5,9 +5,9 @@ public class CardInfo {
     public String type;
     public String serial;
     public String pin;
-    public Integer amount;
+    public int amount;
 
-    public CardInfo(String transactionID, String type, String serial, String pin, Integer amount){
+    public CardInfo(String transactionID, String type, int amount, String serial, String pin){
         this.transactionID = transactionID;
         this.type = type;
         this.serial = serial;
