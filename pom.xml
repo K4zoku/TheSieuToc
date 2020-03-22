@@ -18,6 +18,7 @@
         <sonar.projectKey>TheSieuToc</sonar.projectKey>
         <sonar.organization>takahatashun-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>c4634f6385362d4b6ff920a53590c4855a14363f</sonar.login>
     </properties>
     <url>https://thesieutoc.net</url>
 

@@ -7,28 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/thesieutoc/data/CardAmount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/handlers/InputCardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/handlers/InputCardHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/thesieutoc/TheSieuTocAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/thesieutoc/TheSieuTocAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings/general.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/languages/messages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/settings/general.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/chat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/chat.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +39,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubPullRequestsUISettings">
@@ -177,7 +163,7 @@
       <workItem from="1584769036551" duration="1908000" />
       <workItem from="1584776043551" duration="18830000" />
       <workItem from="1584801615845" duration="4530000" />
-      <workItem from="1584849988170" duration="8869000" />
+      <workItem from="1584849988170" duration="9209000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -312,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584718657834</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Update to 2.0.0">
+      <created>1584865541450</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1584865541450</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +347,8 @@
     <MESSAGE value="clean code" />
     <MESSAGE value="lite version" />
     <MESSAGE value="change something" />
-    <option name="LAST_COMMIT_MESSAGE" value="change something" />
+    <MESSAGE value="Update to 2.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to 2.0.0" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -370,10 +364,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583424822165" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584718657048">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584865538801">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718657048" />
+    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865538801" />
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -402,10 +396,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584718661553">
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584865691909">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718661553" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865691909" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
