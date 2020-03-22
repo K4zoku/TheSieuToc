@@ -23,6 +23,7 @@ Too-Few-Args: '&cThiếu dữ liệu'
 Too-Many-Args: '&cThừa dữ liệu'
 Calculating: '&aĐang tính toán...'
 Empty-Top: '&cHiện chưa có ai nạp thẻ cả!'
-Top-Msg: '&aCó &f&l{Number_Of_Donors} &angười đã nạp và tổng cộng được &6&l{Server_Total}₫&a. Sau đây là top &f{Top} &angười nạp thẻ:'
+Top-Msg: '&aCó &f&l{Number_Of_Donors} &angười đã nạp và tổng cộng được &6&l{Server_Total}₫&a.
+Sau đây là top &f{Top} &angười nạp thẻ:'
 Your-Top: '&aTop của bạn là &a&l#{Player_Rank} &avới tổng số tiền là &6&l{Player_Total}₫'
 Top-Format: '&a&l#{Player_Rank}&f&l: &b&l{Player} &7&l- &6&l{Player_Total}₫'

@@ -3,16 +3,18 @@ package me.lxc.thesieutoc;
 import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeDebug;
 import me.lxc.artxeapi.utils.ArtxeTime;
+import me.lxc.thesieutoc.event.PlayerChat;
 import me.lxc.thesieutoc.internal.*;
+import me.lxc.thesieutoc.tasks.CardCheckTask;
 import net.thesieutoc.data.CardInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,7 @@ import static me.lxc.artxeapi.utils.ArtxeChat.console;
 
 public final class TheSieuToc extends JavaPlugin {
     public static String pluginVersion;
-    public static ArtxeDebug artxeDebug;
+    public static ArtxeDebug pluginDebug;
     public static final String PREFIX = "§6[§b§lTheSieuToc§6] §r";
 
     private static final String CMD = "donate";
@@ -30,17 +32,14 @@ public final class TheSieuToc extends JavaPlugin {
     private static final String CMD_USAGE = "/<command>";
     private static final List<String> CMD_ALIASES = Arrays.asList("napthe", "nạpthẻ", "nạp_thẻ", "thesieutoc", "tst", "thẻsiêutốc", "thẻ_siêu_tốc");
 
-    public static List<String> cardList;
-
     private Settings settings;
     private DonorLog donorLog;
     private Messages messages;
     private Ui ui;
-    private List<Integer> amountList;
     public HashMap<Player, List<CardInfo>> queue;
 
     public boolean hasAPIInfo;
-
+    public CardCheckTask cardCheckTask;
     private static TheSieuToc instance;
 
     @Override
@@ -48,6 +47,7 @@ public final class TheSieuToc extends JavaPlugin {
         preStartup();
         loadData();
         registerCommands();
+        registerListeners();
     }
 
     @Override
@@ -65,17 +65,17 @@ public final class TheSieuToc extends JavaPlugin {
         console("               §f| §bVersion: §6" + pluginVersion + " §f| §bAuthor: §6LXC §f|");
         console("            §f| §aCopyright (c) 2018-" + ArtxeTime.getCurrentYear() + " §bTheSieuToc §f|");
         instance = this;
-        amountList = new ArrayList<>();
         queue = new HashMap<>();
     }
 
     public void loadData() {
-        settings = new Settings(new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings/general.yml"));
+        settings = new Settings(new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings"));
         hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
-        donorLog = new DonorLog(settings.donorLogFile);
-        artxeDebug = new ArtxeDebug(this, settings.debug);
-        messages = new Messages(new ArtxeYAML(this, getDataFolder() + File.separator + "languages", "messages.yml", "languages/messages.yml"));
-        ui = new Ui(new ArtxeYAML(this, getDataFolder() + File.separator + "ui", "chat.yml", "ui/chat.yml"));
+        donorLog = new DonorLog(new File(getDataFolder() + File.separator + "logs", "donation.log"));
+        pluginDebug = new ArtxeDebug(this, settings.debug);
+        messages = new Messages(new ArtxeYAML(this, getDataFolder() + File.separator + "languages", "messages.yml", "languages"));
+        ui = new Ui(new ArtxeYAML(this, getDataFolder() + File.separator + "ui", "chat.yml", "ui"));
+        cardCheckTask = new CardCheckTask(this);
     }
 
     public void reload(short type) {
@@ -85,6 +85,7 @@ public final class TheSieuToc extends JavaPlugin {
             case 3: ui.reload(); break;
             default:
                 settings.reload();
+                hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
                 messages.reload();
                 ui.reload();
                 break;
@@ -97,10 +98,15 @@ public final class TheSieuToc extends JavaPlugin {
             field.setAccessible(true);
             CommandMap commandMap = (CommandMap) field.get(Bukkit.getServer());
             commandMap.register(CMD, new Commands(CMD, CMD_DESCRIPTION, CMD_USAGE, CMD_ALIASES));
-            console("Commands has been registered");
+            getLogger().log(Level.INFO, "Commands has been registered");
         } catch (NoSuchFieldException | IllegalAccessException e) {
             getLogger().log(Level.SEVERE, "Could not register command!", e);
         }
+    }
+
+    private void registerListeners() {
+        PluginManager bkplm = Bukkit.getPluginManager();
+        bkplm.registerEvents(new PlayerChat(), this);
     }
 
     public static TheSieuToc getInstance() {
@@ -121,9 +127,5 @@ public final class TheSieuToc extends JavaPlugin {
 
     public DonorLog getDonorLog() {
         return this.donorLog;
-    }
-
-    public List<Integer> getAmountList() {
-        return amountList;
     }
 }

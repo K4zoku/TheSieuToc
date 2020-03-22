@@ -6,20 +6,55 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="lite version">
+    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/thesieutoc/data/CardAmount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/handlers/InputCardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/handlers/InputCardHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/thesieutoc/TheSieuTocAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/thesieutoc/TheSieuTocAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/languages/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/chat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/chat.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -76,6 +111,7 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn verify sonar:sonar " />
+      <command value="mvn verify sonar:sonar -e" />
     </option>
   </component>
   <component name="RunManager">
@@ -137,7 +173,11 @@
       <workItem from="1584444851562" duration="4000" />
       <workItem from="1584509421059" duration="444000" />
       <workItem from="1584683661473" duration="19784000" />
-      <workItem from="1584714832953" duration="3799000" />
+      <workItem from="1584714832953" duration="4681000" />
+      <workItem from="1584769036551" duration="1908000" />
+      <workItem from="1584776043551" duration="18830000" />
+      <workItem from="1584801615845" duration="4530000" />
+      <workItem from="1584849988170" duration="8869000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -265,11 +305,21 @@
       <option name="project" value="LOCAL" />
       <updated>1584717838339</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="change something">
+      <created>1584718657834</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1584718657834</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -301,17 +351,17 @@
     <MESSAGE value="Remove ArtxeSQL.java" />
     <MESSAGE value="Update" />
     <MESSAGE value="add Badges" />
-    <MESSAGE value="change something" />
     <MESSAGE value="clean code" />
     <MESSAGE value="lite version" />
-    <option name="LAST_COMMIT_MESSAGE" value="lite version" />
+    <MESSAGE value="change something" />
+    <option name="LAST_COMMIT_MESSAGE" value="change something" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1584700881189">
+    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1584786826074">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584700881189" />
+    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584786826074" />
     <state x="643" y="320" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582714515002">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -320,38 +370,42 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583424822165" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584718405412">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584718657048">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718405412" />
+    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718657048" />
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1582818781736" />
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom" timestamp="1583479609248">
+    <state width="1557" height="202" key="GridCell.Tab.0.bottom" timestamp="1584787995621">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609248" />
-    <state width="1557" height="202" key="GridCell.Tab.0.center" timestamp="1583479609247">
+    <state width="1557" height="202" key="GridCell.Tab.0.bottom/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584787995621" />
+    <state width="1557" height="202" key="GridCell.Tab.0.center" timestamp="1584787995620">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.center/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609247" />
-    <state width="1557" height="202" key="GridCell.Tab.0.left" timestamp="1583479609247">
+    <state width="1557" height="202" key="GridCell.Tab.0.center/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584787995620" />
+    <state width="1557" height="202" key="GridCell.Tab.0.left" timestamp="1584787995620">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.left/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609247" />
-    <state width="1557" height="202" key="GridCell.Tab.0.right" timestamp="1583479609248">
+    <state width="1557" height="202" key="GridCell.Tab.0.left/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584787995620" />
+    <state width="1557" height="202" key="GridCell.Tab.0.right" timestamp="1584787995620">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.right/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583479609248" />
+    <state width="1557" height="202" key="GridCell.Tab.0.right/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584787995620" />
+    <state x="380" y="165" key="IDE.errors.dialog" timestamp="1584794832761">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="380" y="165" key="IDE.errors.dialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584794832761" />
     <state x="280" y="5" key="SettingsEditor" timestamp="1583322127855">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584717851452">
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584718661553">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584717851452" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718661553" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -360,10 +414,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="607" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583325332449" />
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1584718266576">
+    <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1584786385964">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584718266576" />
+    <state x="456" y="195" width="672" height="677" key="run.anything.popup/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584786385964" />
     <state x="630" y="222" key="svn.repositoryBrowser" timestamp="1582817563542">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -1,11 +1,19 @@
 # /!\ Không thay đổi giá trị này
 Config-Version: 2.0.0
 
+# [?] Khi người chơi đang nhập thẻ mà muốn hủy thì nhập các từ trong danh sách bên dưới, có thể tùy biến
+Cancel:
+  - 'Cancel'
+  - 'Exit'
+  - 'Hủy'
+  - 'Huỷ'
+  - 'Huy'
+
 Choose-Card-Type:
   Text: '&b&l{Card_Type}'
-    Hover:
-      - '&b&lNạp thẻ {Card_Type}'
-      - '&aClick vào để chọn mệnh giá'
+  Hover:
+    - '&b&lNạp thẻ {Card_Type}'
+    - '&aClick vào để chọn mệnh giá'
 
 Choose-Card-Amount:
   Text: '&a{Card_Amount}₫'

@@ -54,7 +54,7 @@ public class ArtxeYAML {
     }
 
     public void reloadConfig() {
-        this.config = formatConfig(YamlConfiguration.loadConfiguration(file));
+        this.config = YamlConfiguration.loadConfiguration(file);
 
         final InputStream configStream = this.plugin.getResource(this.internalPath);
         if (configStream == null) {
@@ -88,8 +88,10 @@ public class ArtxeYAML {
         this.config.setDefaults(ymlConfig);
         try {
             this.config.load(this.file);
+            formatConfig(this.config);
         } catch (FileNotFoundException e) {
-            this.saveDefaultConfig();
+            saveDefaultConfig();
+            reloadConfig();
         } catch (InvalidConfigurationException | IOException e) {
             plugin.getLogger().log(Level.SEVERE, e.getClass().getSimpleName());
         }
@@ -105,11 +107,11 @@ public class ArtxeYAML {
         }
     }
 
-    private static <T extends ConfigurationSection> T formatConfig(T section){
+    private static <T extends ConfigurationSection> T formatConfig(T section) {
         Set<String> keys = section.getKeys(true);
-        for(String key : keys){
+        for (String key : keys) {
             Object value = section.get(key);
-            if(value instanceof String)
+            if (value instanceof String)
                 section.set(key, ChatColor.translateAlternateColorCodes('&', (String) value));
         }
         return section;

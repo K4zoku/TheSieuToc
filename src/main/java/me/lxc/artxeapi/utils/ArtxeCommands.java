@@ -1,5 +1,6 @@
 package me.lxc.artxeapi.utils;
 
+import me.lxc.thesieutoc.TheSieuToc;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -11,7 +12,9 @@ public class ArtxeCommands {
 
     public static void dispatchCommand(Player player, String command) {
         final String cmd = command.replaceAll(MATCH, "$2").replaceAll("(?ium)([{]player[}])", player.getName());
+        TheSieuToc.pluginDebug.debug(cmd);
         final String type = command.replaceAll(MATCH, "$1".replace(":","").toLowerCase());
+        TheSieuToc.pluginDebug.debug(type);
         switch (type){
             case "op":
                 if(player.isOp()){

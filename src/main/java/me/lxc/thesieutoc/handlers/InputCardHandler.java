@@ -12,11 +12,15 @@ public class InputCardHandler {
     private static List<Player> inputStepTwo = new ArrayList<>();
     private static HashMap<Player, LocalCardInfo> cards = new HashMap<>();
 
+    private InputCardHandler() {}
+
     public static void triggerStepOne(Player player, String type, int amount) {
-        if(!stepOne(player)) {
+        if(!stepOne(player) && !cards.containsKey(player)) {
             player.sendMessage(TheSieuToc.getInstance().getMessages().inputSerial);
             inputStepOne.add(player);
             cards.put(player, new LocalCardInfo(type, amount, "", ""));
+            TheSieuToc.pluginDebug.debug("Type: " + type);
+            TheSieuToc.pluginDebug.debug("Amount: " + amount);
         }
     }
 
@@ -29,10 +33,13 @@ public class InputCardHandler {
     }
 
     public static void triggerStepTwo(Player player, String serial) {
-        player.sendMessage(TheSieuToc.getInstance().getMessages().inputSerial);
-        inputStepTwo.add(player);
-        final LocalCardInfo info = cards.get(player);
-        cards.replace(player, new LocalCardInfo(info.type, info.amount, serial, ""));
+        if (!stepTwo(player) && cards.containsKey(player)) {
+            player.sendMessage(TheSieuToc.getInstance().getMessages().inputPin);
+            inputStepTwo.add(player);
+            final LocalCardInfo info = cards.get(player);
+            cards.replace(player, new LocalCardInfo(info.type, info.amount, serial, ""));
+            TheSieuToc.pluginDebug.debug("Serial: " + serial);
+        }
     }
 
     public static boolean stepTwo(Player player) {
@@ -46,7 +53,12 @@ public class InputCardHandler {
     public static LocalCardInfo lastStep(Player player, String pin) {
         final LocalCardInfo info = cards.get(player);
         cards.remove(player);
+        TheSieuToc.pluginDebug.debug("Pin: " + pin);
         return new LocalCardInfo(info.type, info.amount, info.serial, pin);
+    }
+
+    public static void purgePlayer(Player player) {
+        cards.remove(player);
     }
 
     public static class LocalCardInfo {

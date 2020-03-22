@@ -6,7 +6,7 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
 
-![](header.png)
+[![Header Image](header.png)](header.png)
 
 ## Installation
 Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plugins`

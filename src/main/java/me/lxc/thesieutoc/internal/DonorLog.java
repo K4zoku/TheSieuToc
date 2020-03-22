@@ -18,15 +18,15 @@ public class DonorLog {
     }
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {
-        if (!(logFile.exists())) {
-            logFile.getParentFile().mkdir();
-            try {
+        try {
+            if (!(logFile.exists())) {
+                logFile.getParentFile().mkdir();
                 if (!logFile.createNewFile()) {
                     return false;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
@@ -41,7 +41,7 @@ public class DonorLog {
                     append(" | TYPE ").append(cardType).
                     append(" | AMOUNT ").append(String.valueOf(amount)).
                     append(" | SUCCESS ").append(String.valueOf(success)).
-                    append(" | NOTES ").append(notes.replaceAll("(?i)[§&][0-9A-FK-OR]", ""));
+                    append(" | NOTES ").append(notes);
             bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();

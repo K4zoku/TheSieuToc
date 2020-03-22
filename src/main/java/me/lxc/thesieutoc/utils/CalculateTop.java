@@ -2,6 +2,7 @@ package me.lxc.thesieutoc.utils;
 
 import me.lxc.thesieutoc.TheSieuToc;
 import me.lxc.thesieutoc.internal.Messages;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -14,25 +15,25 @@ public class CalculateTop {
     private static final String YEAR = "yyyy";
     private static final String TOTAL = "total";
 
-    public long numberOfDonors;
+    private static long numberOfDonors;
+    private static long serverTotal = 0;
 
-
-    private static ArrayList<String> getLogContent() throws Exception {
+    private static List<String> getLogContent() throws Exception {
         File log = TheSieuToc.getInstance().getDonorLog().logFile;
         Scanner s = new Scanner(log);
-        ArrayList<String> lines = new ArrayList<>();
+        List<String> logContent = new ArrayList<>();
         while (s.hasNextLine()) {
-            lines.add(s.nextLine());
+            logContent.add(s.nextLine());
         }
         s.close();
-        return lines;
+        return logContent;
     }
-    public static Map<String, Double> execute(String type) throws Exception {
-        ArrayList<String> log = getLogContent();
-        ArrayList<String> matchDate = new ArrayList<>();
-        Map<String,Double> top = new HashMap<>();
+    public static Map<String, Integer> execute(String type) throws Exception {
+        List<String> log = getLogContent();
+        List<String> matchDate = new ArrayList<>();
+        Map<String, Integer> top;
         if (type.contains(TOTAL)) {
-            top = getSuccess(top, log);
+            top = getSuccess(log);
         } else {
             String format;
             switch (type) {
@@ -55,74 +56,76 @@ public class CalculateTop {
                     matchDate.add(line);
                 }
             }
-            top = getSuccess(top, matchDate);
+            top = getSuccess(matchDate);
         }
         top = SortDesc(top);
+        numberOfDonors = top.size();
         return top;
     }
-    private static Map<String,Double> getSuccess(Map<String,Double> inputmap, ArrayList<String> inputarray){
+    private static Map<String, Integer> getSuccess(List<String> inputarray) {
+        serverTotal = 0;
+        Map<String, Integer> s = new HashMap<>();
         for (String line : inputarray) {
             String[] data = line.split("[|]",8);
-            String name = data[1].replaceFirst(" NAME ","");
-            double amount = Double.parseDouble(data[5].replaceFirst(" AMOUNT ","").trim());
             boolean success = Boolean.parseBoolean(data[6].replaceFirst(" SUCCESS ","").trim());
             if (success) {
-                if (!(inputmap.containsKey(name))) inputmap.put(name,amount);
-                else inputmap.replace(name,inputmap.get(name)+amount);
+                String name = data[1].replaceFirst(" NAME ","").trim();
+                int amount = Integer.parseInt(data[5].replaceFirst(" AMOUNT ","").trim());
+                if (s.containsKey(name))
+                    s.replace(name, s.get(name) + amount);
+                else s.put(name, amount);
+                serverTotal += amount;
             }
         }
-        return inputmap;
-    }
-    private static Map<String,Double> SortAsc(Map<String,Double> map) {
-        List<Map.Entry<String,Double>> list = new LinkedList<>(map.entrySet());
-        list.sort(Comparator.comparing(o -> (o.getValue())));
-
-        Map<String,Double> sortedMap = new LinkedHashMap<>();
-        for (Map.Entry<String,Double> entry : list) {
-            sortedMap.put(entry.getKey(), entry.getValue());
-        }
-        return sortedMap;
+        return s;
     }
 
-    private static Map<String,Double> SortDesc(Map<String, Double> map) {
-        List<Map.Entry<String,Double>> list =
+    private static Map<String, Integer> SortDesc(Map<String, Integer> map) {
+        List<Map.Entry<String, Integer>> list =
                 new LinkedList<>(map.entrySet());
         list.sort((o1, o2) -> (o2.getValue()).compareTo(o1.getValue()));
-        Map<String,Double> sortedMap = new LinkedHashMap<>();
-        for (Map.Entry<String,Double> entry : list) {
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : list) {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         return sortedMap;
     }
 
-    private static void printTop(Player player, Map<String, Double> top) {
+    public static void printTop(CommandSender sender, Map<String, Integer> top, int limit) {
         final Messages msg = TheSieuToc.getInstance().getMessages();
-        player.sendMessage(msg.calculating);
+        sender.sendMessage(msg.calculating);
         int i = 0;
-        String playerName = player.getName();
-        String topFormat = msg.topFormat;
-        String format = msg.yourTop;
+        String playerName = sender.getName();
         if (top.isEmpty()) {
-            player.sendMessage(msg.emptyTop);
+            sender.sendMessage(msg.emptyTop);
         } else {
-            for (Map.Entry<String, Double> entry : top.entrySet()) {
+            sender.sendMessage(msg.topMessage.
+                    replaceAll("(?ium)[{]Number_Of_Donors[}]", String.valueOf(numberOfDonors)).
+                    replaceAll("(?ium)[{]Server_Total[}]", String.valueOf(serverTotal)).
+                    replaceAll("(?ium)[{]Top[}]", String.valueOf(Math.min(top.size(), limit)))
+            );
+            String yourTop = msg.yourTop;
+            for (Map.Entry<String, Integer> entry : top.entrySet()) {
                 i++;
-                String name = entry.getKey();
-                String amount = String.valueOf(entry.getValue());
-                if (i < 10) {
-                    player.sendMessage(topFormat.
-                            replaceAll("(?ium)\\{OrdinalNumber}", String.valueOf(i)).
-                            replaceAll("(?ium)\\{PlayerName}", name).
-                            replaceAll("(?ium)\\{TotalAmount}", amount)
+                String name = entry.getKey().trim();
+                String amount = String.valueOf(entry.getValue()).trim();
+                if (i <= limit) {
+                    sender.sendMessage(msg.topFormat.
+                            replaceAll("(?ium)[{]Player_Rank[}]", String.valueOf(i)).
+                            replaceAll("(?ium)[{]Player[}]", name).
+                            replaceAll("(?ium)[{]Player_Total[}]", amount)
                     );
                 }
-                if (name.contains(playerName)) {
-                    player.sendMessage(format.
-                            replaceAll("(?ium)\\{OrdinalNumber}", String.valueOf(i)).
-                            replaceAll("(?ium)\\{PlayerName}", name).
-                            replaceAll("(?ium)\\{TotalAmount}", amount)
-                    );
+                if (name.equals(playerName) && sender instanceof Player) {
+                    yourTop = yourTop.
+                            replaceAll("(?ium)[{]Player_Rank[}]", String.valueOf(i)).
+                            replaceAll("(?ium)[{]Player[}]", name).
+                            replaceAll("(?ium)[{]Player_Total[}]", amount);
                 }
+            }
+
+            if (top.containsKey(playerName) && sender instanceof Player) {
+                sender.sendMessage(yourTop);
             }
         }
     }

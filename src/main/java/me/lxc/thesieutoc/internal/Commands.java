@@ -4,6 +4,7 @@ import me.lxc.artxeapi.utils.ArtxeNumber;
 import me.lxc.thesieutoc.TheSieuToc;
 import me.lxc.thesieutoc.handlers.InputCardHandler;
 import me.lxc.thesieutoc.tasks.CardCheckTask;
+import me.lxc.thesieutoc.utils.CalculateTop;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Player;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Commands extends BukkitCommand {
 
@@ -60,6 +62,14 @@ public class Commands extends BukkitCommand {
                         if(hasAPIInfo) {
                             return check(sender, args.length, msg);
                         } else return false;
+                    case "top":
+                        try {
+                            CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), 10);
+                            return true;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return false;
+                        }
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -88,6 +98,19 @@ public class Commands extends BukkitCommand {
                         if(hasAPIInfo) {
                             return check(sender, args.length, msg);
                         } else return false;
+                    case "top":
+                        try {
+                            if (ArtxeNumber.isInteger(args[1])) {
+                                CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), Integer.parseInt(args[1]));
+                                return true;
+                            } else {
+                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                                return false;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return false;
+                        }
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -124,6 +147,21 @@ public class Commands extends BukkitCommand {
                         if(hasAPIInfo) {
                             return check(sender, args.length, msg);
                         } else return false;
+                    case "top":
+                        try {
+                            if (ArtxeNumber.isInteger(args[1])) {
+                                if (Stream.of("TOTAL", "DAY", "MONTH", "YEAR").anyMatch(args[2]::equalsIgnoreCase)) {
+                                    CalculateTop.printTop(sender, CalculateTop.execute(args[2]), Integer.parseInt(args[1]));
+                                    return true;
+                                } else return false;
+                            } else {
+                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                                return false;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return false;
+                        }
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -154,7 +192,7 @@ public class Commands extends BukkitCommand {
     private boolean check(CommandSender sender, int arg, Messages msg){
         if(sender.hasPermission("napthe.admin.check")){
             if(arg == 1){
-                CardCheckTask.check(TheSieuToc.getInstance());
+                CardCheckTask.checkAll();
                 sender.sendMessage(msg.checked);
                 return true;
             } else {
@@ -168,7 +206,7 @@ public class Commands extends BukkitCommand {
     }
 
     private void chooseCard(Player player, Ui ui){
-        for(String card : TheSieuToc.cardList){
+        for(String card : TheSieuToc.getInstance().getSettings().cardEnable){
             String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
             String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
             BaseComponent[] message = new ComponentBuilder(text)
@@ -180,7 +218,7 @@ public class Commands extends BukkitCommand {
     }
 
     private void chooseAmount(Player player, String type, Ui ui){
-        for(Integer amount : TheSieuToc.getInstance().getAmountList()){
+        for(Integer amount : TheSieuToc.getInstance().getSettings().amountList){
             String text = ui.cardAmountText.replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
@@ -209,11 +247,11 @@ public class Commands extends BukkitCommand {
     }
 
     static boolean isValidCard(String type){
-        return TheSieuToc.cardList.stream().anyMatch(type::equalsIgnoreCase);
+        return TheSieuToc.getInstance().getSettings().cardEnable.stream().anyMatch(type::equalsIgnoreCase);
     }
 
     static boolean isValidAmount(int a){
-        for (int amount : TheSieuToc.getInstance().getAmountList()) {
+        for (int amount : TheSieuToc.getInstance().getSettings().amountList) {
             if (amount == a) {
                 return true;
             }
