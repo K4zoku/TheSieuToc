@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,32 +51,29 @@ public class PlayerChat implements Listener {
                 player.sendMessage(msg.pin.replaceAll("(?ium)[{]Pin[}]", text));
                 JsonObject sendCard = TheSieuTocAPI.sendCard(settings.iTheSieuTocKey, settings.iTheSieuTocSecret, info.type, info.amount, info.serial, info.pin);
                 TheSieuToc.pluginDebug.debug(sendCard.toString());
-                if (sendCard.get("status").getAsInt() != 0) {
+                if (!sendCard.get("status").getAsString().equals("00")) {
                     player.sendMessage(msg.fail);
                     player.sendMessage(sendCard.get("msg").getAsString());
                     return;
                 }
                 String transactionID = sendCard.get("transaction_id").getAsString();
                 CardInfo tstInfo = new CardInfo(transactionID, info.type, info.amount, info.serial, info.pin);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-                if (CardCheckTask.checkOne(player, tstInfo, null)) {
-                    List<CardInfo> queue = TheSieuToc.getInstance().queue.get(player);
-                    if (queue == null) {
-                        queue = new ArrayList<>();
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        if (CardCheckTask.checkOne(player, tstInfo, null)) {
+                            List<CardInfo> queue = TheSieuToc.getInstance().queue.get(player);
+                            if (queue == null) {
+                                queue = new ArrayList<>();
+                            }
+                            queue.add(tstInfo);
+                            if (TheSieuToc.getInstance().queue.containsKey(player))
+                                TheSieuToc.getInstance().queue.replace(player, queue);
+                            else TheSieuToc.getInstance().queue.put(player, queue);
+                        }
                     }
-                    queue.add(tstInfo);
-                    if (TheSieuToc.getInstance().queue.containsKey(player))
-                        TheSieuToc.getInstance().queue.replace(player, queue);
-                    else TheSieuToc.getInstance().queue.put(player, queue);
-                    List<CardInfo> nq = TheSieuToc.getInstance().queue.get(player);
-                    for (CardInfo i : nq) {
-                        TheSieuToc.pluginDebug.debug(i.transactionID + "|" + i.serial);
-                    }
-                }
+                }.runTaskLaterAsynchronously(TheSieuToc.getInstance(), 20L);
             } else {
                 unTriggerStep2(player);
                 purgePlayer(player);

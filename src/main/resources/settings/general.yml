@@ -24,7 +24,7 @@ TheSieuToc:
 # hàng chờ này sẽ được kiểm tra vào mỗi 10s (mặc định)
 # Fact: Bạn có thể dùng các loại đơn vị như tick (không cần ghi gì sau số), milisecond (ms),
 #       second (s), minute (m), hour (h), day (d)
-Card-Check-Period: 5m
+Card-Check-Period: 1m
 
 # /!\ Phải nhập đúng tên thẻ có trên https://thesieutoc.net, còn không thì cứ để mặc định
 # Fact: Không thích loại thẻ nào thì có thể bỏ bớt

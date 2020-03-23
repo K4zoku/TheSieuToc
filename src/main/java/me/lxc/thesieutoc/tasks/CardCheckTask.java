@@ -15,10 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CardCheckTask extends BukkitRunnable {
-    private TheSieuToc instance;
 
     public CardCheckTask(TheSieuToc instance) {
-        this.instance = instance;
         this.runTaskTimer(instance, 0L, instance.getSettings().cardCheckPeriod);
     }
 
@@ -28,17 +26,22 @@ public class CardCheckTask extends BukkitRunnable {
     }
 
     public static void checkAll() {
-        TheSieuToc.pluginDebug.debug("Checking in progress...");
-        for(Map.Entry<Player, List<CardInfo>> playerCards : TheSieuToc.getInstance().queue.entrySet()){
-            Player player = playerCards.getKey();
-            List<CardInfo> cards = playerCards.getValue();
-            List<CardInfo> removeQueue = new ArrayList<>();
-            for(CardInfo card : cards){
-                checkOne(player, card, removeQueue);
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                TheSieuToc.pluginDebug.debug("Checking in progress...");
+                for(Map.Entry<Player, List<CardInfo>> playerCards : TheSieuToc.getInstance().queue.entrySet()){
+                    Player player = playerCards.getKey();
+                    List<CardInfo> cards = playerCards.getValue();
+                    List<CardInfo> removeQueue = new ArrayList<>();
+                    for(CardInfo card : cards){
+                        checkOne(player, card, removeQueue);
+                    }
+                    cards.removeAll(removeQueue);
+                    TheSieuToc.getInstance().queue.replace(player, cards);
+                }
             }
-            cards.removeAll(removeQueue);
-            TheSieuToc.getInstance().queue.replace(player, cards);
-        }
+        }.runTaskAsynchronously(TheSieuToc.getInstance());
     }
 
     public static boolean checkOne(final Player player, final CardInfo card, List<CardInfo> removeQueue) {

@@ -9,6 +9,12 @@
     <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/settings/general.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +169,8 @@
       <workItem from="1584769036551" duration="1908000" />
       <workItem from="1584776043551" duration="18830000" />
       <workItem from="1584801615845" duration="4530000" />
-      <workItem from="1584849988170" duration="9209000" />
+      <workItem from="1584849988170" duration="14559000" />
+      <workItem from="1584938219402" duration="3772000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -305,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584865541450</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update to 2.0.0">
+      <created>1584865859764</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1584865859764</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,10 +366,10 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1584786826074">
+    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1584941440458">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584786826074" />
+    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584941440458" />
     <state x="643" y="320" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582714515002">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -364,10 +378,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583424822165" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584865538801">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584865858573">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865538801" />
+    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865858573" />
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -396,10 +410,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584865691909">
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584865865267">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865691909" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865865267" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

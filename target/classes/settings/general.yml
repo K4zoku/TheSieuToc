@@ -1,5 +1,5 @@
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.0
+Config-Version: 2.0.1
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -7,7 +7,7 @@ Config-Version: 2.0.0
 #       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
 #      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
 #     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: 2.0.0 | Author: LXC |                    #
+#                  | Version: 2.0.1 | Author: LXC |                    #
 #               | Copyright (c) 2018-2020 TheSieuToc |                 #
 ########################################################################
 
@@ -24,7 +24,7 @@ TheSieuToc:
 # hàng chờ này sẽ được kiểm tra vào mỗi 10s (mặc định)
 # Fact: Bạn có thể dùng các loại đơn vị như tick (không cần ghi gì sau số), milisecond (ms),
 #       second (s), minute (m), hour (h), day (d)
-Card-Check-Period: 5m
+Card-Check-Period: 1m
 
 # /!\ Phải nhập đúng tên thẻ có trên https://thesieutoc.net, còn không thì cứ để mặc định
 # Fact: Không thích loại thẻ nào thì có thể bỏ bớt

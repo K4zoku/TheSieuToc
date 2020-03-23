@@ -13,6 +13,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -63,13 +64,7 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     case "top":
-                        try {
-                            CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), 10);
-                            return true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return false;
-                        }
+                        return top(sender, args);
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -99,18 +94,7 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     case "top":
-                        try {
-                            if (ArtxeNumber.isInteger(args[1])) {
-                                CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), Integer.parseInt(args[1]));
-                                return true;
-                            } else {
-                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
-                                return false;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return false;
-                        }
+                        return top(sender, args);
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -148,20 +132,7 @@ public class Commands extends BukkitCommand {
                             return check(sender, args.length, msg);
                         } else return false;
                     case "top":
-                        try {
-                            if (ArtxeNumber.isInteger(args[1])) {
-                                if (Stream.of("TOTAL", "DAY", "MONTH", "YEAR").anyMatch(args[2]::equalsIgnoreCase)) {
-                                    CalculateTop.printTop(sender, CalculateTop.execute(args[2]), Integer.parseInt(args[1]));
-                                    return true;
-                                } else return false;
-                            } else {
-                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
-                                return false;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return false;
-                        }
+                        return top(sender, args);
                     default:
                         sender.sendMessage(msg.invalidCommand);
                         return false;
@@ -215,6 +186,45 @@ public class Commands extends BukkitCommand {
                     .create();
             player.spigot().sendMessage(message);
         }
+    }
+
+    private boolean top(CommandSender sender, String[] args) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Messages msg = TheSieuToc.getInstance().getMessages();
+                try {
+                    switch (args.length) {
+                        case 1:
+                            CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), 10);
+                            break;
+                        case 2:
+                            if (ArtxeNumber.isInteger(args[1])) {
+                                CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), Integer.parseInt(args[1]));
+                                break;
+                            } else {
+                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                                break;
+                            }
+                        case 3:
+                            if (ArtxeNumber.isInteger(args[1])) {
+                                if (Stream.of("TOTAL", "DAY", "MONTH", "YEAR").anyMatch(args[2]::equalsIgnoreCase)) {
+                                    CalculateTop.printTop(sender, CalculateTop.execute(args[2]), Integer.parseInt(args[1]));
+                                    break;
+                                }
+                            } else {
+                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                                break;
+                            }
+                        default:
+                            sender.sendMessage(msg.tooManyArgs);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        return true;
     }
 
     private void chooseAmount(Player player, String type, Ui ui){
