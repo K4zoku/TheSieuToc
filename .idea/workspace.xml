@@ -8,13 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings/general.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/languages/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/chat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/chat.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +104,7 @@
     <option name="myCommands">
       <command value="mvn verify sonar:sonar " />
       <command value="mvn verify sonar:sonar -e" />
+      <command value="gpg import" />
     </option>
   </component>
   <component name="RunManager">
@@ -170,7 +171,10 @@
       <workItem from="1584776043551" duration="18830000" />
       <workItem from="1584801615845" duration="4530000" />
       <workItem from="1584849988170" duration="14559000" />
-      <workItem from="1584938219402" duration="3772000" />
+      <workItem from="1584938219402" duration="5567000" />
+      <workItem from="1584973346880" duration="852000" />
+      <workItem from="1585044201475" duration="1202000" />
+      <workItem from="1585053087101" duration="2201000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -319,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584865859764</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Update to 2.0.1">
+      <created>1584942134745</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1584942134745</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +373,9 @@
     <MESSAGE value="lite version" />
     <MESSAGE value="change something" />
     <MESSAGE value="Update to 2.0.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to 2.0.0" />
+    <MESSAGE value="Update to 2.0.1" />
+    <MESSAGE value="Update to 2.0.1 stable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to 2.0.1 stable" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -378,10 +391,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583424822165" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1584865858573">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1585055190732">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865858573" />
+    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585055190732" />
     <state x="676" y="325" width="264" height="209" key="Github.ShareDialog" timestamp="1582818781736">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -410,10 +423,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="5" key="SettingsEditor/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583322127855" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1584865865267">
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1585053470693">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584865865267" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585053470693" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582817866496">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -422,10 +435,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="607" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1583325332449" />
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1584786385964">
+    <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1585053890241">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584786385964" />
+    <state x="456" y="195" width="672" height="677" key="run.anything.popup/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585053890241" />
     <state x="630" y="222" key="svn.repositoryBrowser" timestamp="1582817563542">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -1,5 +1,6 @@
 package me.lxc.artxeapi.data;
 
+import me.lxc.thesieutoc.TheSieuToc;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -111,8 +112,11 @@ public class ArtxeYAML {
         Set<String> keys = section.getKeys(true);
         for (String key : keys) {
             Object value = section.get(key);
-            if (value instanceof String)
-                section.set(key, ChatColor.translateAlternateColorCodes('&', (String) value));
+            if (value instanceof String) {
+                String stringValue = ChatColor.translateAlternateColorCodes('&', (String) value);
+                TheSieuToc.pluginDebug.debug(stringValue);
+                section.set(key, stringValue);
+            }
         }
         return section;
     }

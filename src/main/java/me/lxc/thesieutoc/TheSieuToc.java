@@ -25,7 +25,6 @@ import static me.lxc.artxeapi.utils.ArtxeChat.console;
 public final class TheSieuToc extends JavaPlugin {
     public static String pluginVersion;
     public static ArtxeDebug pluginDebug;
-    public static final String PREFIX = "§6[§b§lTheSieuToc§6] §r";
 
     private static final String CMD = "donate";
     private static final String CMD_DESCRIPTION = "Nạp thẻ";

@@ -182,7 +182,7 @@ public class Commands extends BukkitCommand {
             String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
             BaseComponent[] message = new ComponentBuilder(text)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
-                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/napthe choose {0}", card)))
+                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0}", card)))
                     .create();
             player.spigot().sendMessage(message);
         }
@@ -233,7 +233,7 @@ public class Commands extends BukkitCommand {
             String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
                     .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
-                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/napthe choose {0} {1}", type, amount.toString())))
+                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0} {1}", type, amount.toString())))
                     .create();
             player.spigot().sendMessage(message);
         }
