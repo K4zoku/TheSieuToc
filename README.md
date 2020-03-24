@@ -5,6 +5,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=ncloc)](https://sonarcloud.io/dashboard?id=TheSieuToc)
 
 [![Header Image](header.png)](header.png)
 
@@ -15,7 +16,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.0
+Config-Version: 2.0.1
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -79,6 +80,8 @@ Card-Reward:
     * Optimize code
 * 2.0.0
     * Recode all?
+* 2.0.1
+    * Optimized task
     
 ## Contact me
 
