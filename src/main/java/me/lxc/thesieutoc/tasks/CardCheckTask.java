@@ -48,7 +48,7 @@ public class CardCheckTask extends BukkitRunnable {
         final Messages messages = TheSieuToc.getInstance().getMessages();
         String notes;
         JsonObject checkCard = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
-        TheSieuToc.pluginDebug.debug("Response: " + checkCard.toString());
+        TheSieuToc.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
         String status = checkCard.get("status").getAsString();
         boolean isOnline = player.isOnline();
         switch (status) {

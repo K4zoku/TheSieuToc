@@ -18,6 +18,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 import static me.lxc.artxeapi.utils.ArtxeChat.console;
@@ -85,6 +86,7 @@ public final class TheSieuToc extends JavaPlugin {
             default:
                 settings.reload();
                 hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
+                pluginDebug = new ArtxeDebug(this, settings.debug);
                 messages.reload();
                 ui.reload();
                 break;
@@ -125,6 +127,11 @@ public final class TheSieuToc extends JavaPlugin {
     }
 
     public DonorLog getDonorLog() {
-        return this.donorLog;
+        if (donorLog.logFile != null && Objects.requireNonNull(donorLog.logFile).exists())
+            return this.donorLog;
+        else {
+            donorLog.createFile();
+            return this.donorLog;
+        }
     }
 }

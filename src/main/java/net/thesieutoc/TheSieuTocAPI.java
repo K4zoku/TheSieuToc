@@ -48,6 +48,11 @@ public class TheSieuTocAPI {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             final String response = reader.lines().collect(Collectors.joining());
             return new JsonParser().parse(response).getAsJsonObject();
+        } catch (SocketTimeoutException e) {
+            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "Read timed out, may API server go down");
+            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "Check your self: " + url);
+            TheSieuToc.getInstance().getLogger().log(Level.WARNING, "Attemping to try again...");
+            return sendRequest(url);
         } catch (IOException e){
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
             return null;

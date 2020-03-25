@@ -24,7 +24,7 @@ public class Ui extends IConfiguration {
         cancel = getStringList("Cancel", Arrays.asList("Cancel", "Exit", "Hủy", "Huỷ", "Huy"));
         cardTypeText = getString("Choose-Card-Type.Text", "§b§l{Card_Type}");
         cardTypeHover = getStringList("Choose-Card-Type.Hover", Arrays.asList("§b§lNạp thẻ {Card_Type}", "§aClick vào để chọn mệnh giá"));
-        cardAmountText = getString("Choose-Card-Amount.Text", "§b§l{Card_Amount}");
+        cardAmountText = getString("Choose-Card-Amount.Text", "§a{Card_Amount}");
         cardAmountHover = getStringList("Choose-Card-Amount.Hover", Arrays.asList("§b§lMệnh giá {Card_Amount}₫", "§aClick vào để bắt đầu nạp"));
     }
 }

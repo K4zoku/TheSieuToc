@@ -37,33 +37,22 @@ public class Commands extends BukkitCommand {
 
         switch (args.length){
             case 0:
-                if(isPlayer){
-                    if(hasAPIInfo) {
-                        chooseCard(player, ui);
-                        return true;
-                    } else return false;
-                } else {
-                    sender.sendMessage(msg.onlyPlayer);
-                    return false;
-                }
+                chooseCard(sender, isPlayer, hasAPIInfo, ui, msg);
+                return true;
             case 1:
                 switch (args[0].toLowerCase()){
                     case "reload":
                         return reload(sender, args.length, msg);
                     case "choose":
-                        if(hasAPIInfo) {
-                            if (isPlayer) {
-                                chooseCard(player, ui);
-                                return true;
-                            } else {
-                                sender.sendMessage(msg.onlyPlayer);
-                                return false;
-                            }
-                        } else return false;
+                        chooseCard(sender, isPlayer, hasAPIInfo, ui, msg);
+                        return true;
                     case "check":
                         if(hasAPIInfo) {
                             return check(sender, args.length, msg);
-                        } else return false;
+                        } else {
+                            sender.sendMessage(msg.missingApiInfo);
+                            return false;
+                        }
                     case "top":
                         return top(sender, args);
                     default:
@@ -73,8 +62,8 @@ public class Commands extends BukkitCommand {
             case 2:
                 switch (args[0].toLowerCase()){
                     case "choose":
-                        if(isPlayer) {
-                            if(hasAPIInfo) {
+                        if(hasAPIInfo) {
+                            if (isPlayer) {
                                 if (isValidCard(args[1])) {
                                     String type = args[1];
                                     chooseAmount(player, type, ui);
@@ -83,9 +72,12 @@ public class Commands extends BukkitCommand {
                                     sender.sendMessage(msg.invalidCardType);
                                     return false;
                                 }
-                            } else return false;
+                            } else {
+                                sender.sendMessage(msg.onlyPlayer);
+                                return false;
+                            }
                         } else {
-                            sender.sendMessage(msg.onlyPlayer);
+                            sender.sendMessage(msg.missingApiInfo);
                             return false;
                         }
                     case "reload":
@@ -93,7 +85,10 @@ public class Commands extends BukkitCommand {
                     case "check":
                         if(hasAPIInfo) {
                             return check(sender, args.length, msg);
-                        } else return false;
+                        } else {
+                            sender.sendMessage(msg.missingApiInfo);
+                            return false;
+                        }
                     case "top":
                         return top(sender, args);
                     default:
@@ -103,8 +98,8 @@ public class Commands extends BukkitCommand {
             case 3:
                 switch (args[0].toLowerCase()){
                     case "choose":
-                        if(isPlayer) {
-                            if(hasAPIInfo) {
+                        if(hasAPIInfo) {
+                            if(isPlayer) {
                                 if (isValidCard(args[1])) {
                                     if (ArtxeNumber.isInteger(args[2])) {
                                         if (isValidAmount(Integer.parseInt(args[2]))) {
@@ -121,17 +116,23 @@ public class Commands extends BukkitCommand {
                                     sender.sendMessage(msg.invalidCardType);
                                     return false;
                                 }
-                            } else return false;
+                            } else {
+                                sender.sendMessage(msg.onlyPlayer);
+                                return false;
+                            }
                         } else {
-                            sender.sendMessage(msg.onlyPlayer);
+                            sender.sendMessage(msg.missingApiInfo);
                             return false;
                         }
                     case "reload":
                         return reload(sender, args.length, msg);
                     case "check":
-                        if(hasAPIInfo) {
+                        if (hasAPIInfo) {
                             return check(sender, args.length, msg);
-                        } else return false;
+                        } else {
+                            sender.sendMessage(msg.missingApiInfo);
+                            return false;
+                        }
                     case "top":
                         return top(sender, args);
                     default:
@@ -177,15 +178,24 @@ public class Commands extends BukkitCommand {
         }
     }
 
-    private void chooseCard(Player player, Ui ui){
-        for(String card : TheSieuToc.getInstance().getSettings().cardEnable){
-            String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
-            String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
-            BaseComponent[] message = new ComponentBuilder(text)
-                    .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
-                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0}", card)))
-                    .create();
-            player.spigot().sendMessage(message);
+    private void chooseCard(CommandSender sender, boolean isPlayer, boolean hasAPIInfo, Ui ui, Messages msg) {
+        if (hasAPIInfo) {
+            if (isPlayer) {
+                final Player player = (Player) sender;
+                for(String card : TheSieuToc.getInstance().getSettings().cardEnable){
+                    String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
+                    String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
+                    BaseComponent[] message = new ComponentBuilder(text)
+                            .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
+                            .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0}", card)))
+                            .create();
+                    player.spigot().sendMessage(message);
+                }
+            } else {
+                sender.sendMessage(msg.onlyPlayer);
+            }
+        } else {
+            sender.sendMessage(msg.missingApiInfo);
         }
     }
 

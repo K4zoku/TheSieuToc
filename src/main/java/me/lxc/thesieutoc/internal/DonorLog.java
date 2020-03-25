@@ -20,16 +20,7 @@ public class DonorLog {
     }
 
     public boolean writeLog(Player p, String serial, String pin, String cardType, int amount, boolean success, String notes) {
-        try {
-            if (!(logFile.exists())) {
-                logFile.getParentFile().mkdir();
-                if (!logFile.createNewFile()) {
-                    return false;
-                }
-            }
-        } catch (IOException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
-        }
+        createFile();
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         String name = p.getName();
@@ -49,5 +40,17 @@ public class DonorLog {
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
         return true;
+    }
+
+    public boolean createFile() {
+        try {
+            if (!(logFile.exists())) {
+                logFile.getParentFile().mkdir();
+                return logFile.createNewFile();
+            } else return true;
+        } catch (IOException e) {
+            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            return false;
+        }
     }
 }
