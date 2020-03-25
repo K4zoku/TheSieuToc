@@ -1,5 +1,6 @@
 package me.lxc.artxeapi.data;
 
+import me.lxc.artxeapi.utils.ArtxeDebug;
 import me.lxc.thesieutoc.TheSieuToc;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
@@ -23,7 +24,7 @@ public class ArtxeYAML {
     private File file;
     private FileConfiguration config;
     private String internalPath;
-
+    private static final ArtxeDebug DEBUG = new ArtxeDebug(TheSieuToc.getInstance(), true);
     public ArtxeYAML(Plugin plugin, String filepath, String filename, String internalPath) {
         this.plugin = plugin;
         this.file = new File(filepath, filename);
@@ -55,7 +56,7 @@ public class ArtxeYAML {
     }
 
     public void reloadConfig() {
-        this.config = YamlConfiguration.loadConfiguration(file);
+        this.config = formatConfig(YamlConfiguration.loadConfiguration(file));
 
         final InputStream configStream = this.plugin.getResource(this.internalPath);
         if (configStream == null) {
@@ -114,7 +115,6 @@ public class ArtxeYAML {
             Object value = section.get(key);
             if (value instanceof String) {
                 String stringValue = ChatColor.translateAlternateColorCodes('&', (String) value);
-                TheSieuToc.pluginDebug.debug(stringValue);
                 section.set(key, stringValue);
             }
         }

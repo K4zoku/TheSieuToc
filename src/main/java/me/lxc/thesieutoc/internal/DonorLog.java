@@ -1,5 +1,6 @@
 package me.lxc.thesieutoc.internal;
 
+import me.lxc.thesieutoc.TheSieuToc;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedWriter;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.logging.Level;
 
 public class DonorLog {
     public File logFile;
@@ -26,7 +28,7 @@ public class DonorLog {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
         Date dt = new Date();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
@@ -44,7 +46,7 @@ public class DonorLog {
                     append(" | NOTES ").append(notes);
             bw.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
         return true;
     }

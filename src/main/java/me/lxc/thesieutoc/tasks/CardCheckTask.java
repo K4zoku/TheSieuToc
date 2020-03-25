@@ -47,10 +47,9 @@ public class CardCheckTask extends BukkitRunnable {
     public static boolean checkOne(final Player player, final CardInfo card, List<CardInfo> removeQueue) {
         final Messages messages = TheSieuToc.getInstance().getMessages();
         String notes;
-        JsonObject response = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
-        TheSieuToc.pluginDebug.debug("Check Card: " + response.toString());
-        String status = response.get("status").getAsString();
-        TheSieuToc.pluginDebug.debug("Status: " + status);
+        JsonObject checkCard = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
+        TheSieuToc.pluginDebug.debug("Response: " + checkCard.toString());
+        String status = checkCard.get("status").getAsString();
         boolean isOnline = player.isOnline();
         switch (status) {
             case "00":
@@ -66,9 +65,9 @@ public class CardCheckTask extends BukkitRunnable {
             default:
                 if(isOnline) {
                     player.sendMessage(messages.fail);
-                    player.sendMessage(response.get("msg").getAsString());
+                    player.sendMessage(checkCard.get("msg").getAsString());
                 }
-                notes = response.get("msg").getAsString();
+                notes = checkCard.get("msg").getAsString();
                 if (removeQueue != null) removeQueue.add(card);
                 TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
         }
@@ -78,7 +77,6 @@ public class CardCheckTask extends BukkitRunnable {
     private static void successAction(Player player, int amount) {
         List<String> commands = TheSieuToc.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
         for (String command : commands) {
-            TheSieuToc.pluginDebug.debug("Run command: " + command);
             ArtxeCommands.dispatchCommand(player, command);
         }
     }

@@ -18,6 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Stream;
 
 public class Commands extends BukkitCommand {
@@ -220,7 +221,7 @@ public class Commands extends BukkitCommand {
                             sender.sendMessage(msg.tooManyArgs);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
                 }
             }
         }.runTaskAsynchronously(TheSieuToc.getInstance());

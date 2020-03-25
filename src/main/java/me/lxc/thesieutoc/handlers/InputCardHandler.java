@@ -19,8 +19,6 @@ public class InputCardHandler {
             player.sendMessage(TheSieuToc.getInstance().getMessages().inputSerial);
             inputStepOne.add(player);
             cards.put(player, new LocalCardInfo(type, amount, "", ""));
-            TheSieuToc.pluginDebug.debug("Type: " + type);
-            TheSieuToc.pluginDebug.debug("Amount: " + amount);
         }
     }
 
@@ -38,7 +36,6 @@ public class InputCardHandler {
             inputStepTwo.add(player);
             final LocalCardInfo info = cards.get(player);
             cards.replace(player, new LocalCardInfo(info.type, info.amount, serial, ""));
-            TheSieuToc.pluginDebug.debug("Serial: " + serial);
         }
     }
 
@@ -53,7 +50,6 @@ public class InputCardHandler {
     public static LocalCardInfo lastStep(Player player, String pin) {
         final LocalCardInfo info = cards.get(player);
         cards.remove(player);
-        TheSieuToc.pluginDebug.debug("Pin: " + pin);
         return new LocalCardInfo(info.type, info.amount, info.serial, pin);
     }
 

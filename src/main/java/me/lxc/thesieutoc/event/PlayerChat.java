@@ -50,7 +50,7 @@ public class PlayerChat implements Listener {
                 unTriggerStep2(player);
                 player.sendMessage(msg.pin.replaceAll("(?ium)[{]Pin[}]", text));
                 JsonObject sendCard = TheSieuTocAPI.sendCard(settings.iTheSieuTocKey, settings.iTheSieuTocSecret, info.type, info.amount, info.serial, info.pin);
-                TheSieuToc.pluginDebug.debug(sendCard.toString());
+                TheSieuToc.pluginDebug.debug("Response: " + sendCard.toString());
                 if (!sendCard.get("status").getAsString().equals("00")) {
                     player.sendMessage(msg.fail);
                     player.sendMessage(sendCard.get("msg").getAsString());

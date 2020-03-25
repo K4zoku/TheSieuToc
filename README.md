@@ -16,7 +16,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.1
+Config-Version: 2.0.2
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -41,7 +41,7 @@ TheSieuToc:
 # hàng chờ này sẽ được kiểm tra vào mỗi 10s (mặc định)
 # Fact: Bạn có thể dùng các loại đơn vị như tick (không cần ghi gì sau số), milisecond (ms),
 #       second (s), minute (m), hour (h), day (d)
-Card-Check-Period: 10s
+Card-Check-Period: 1m
 
 # /!\ Phải nhập đúng tên thẻ có trên https://thesieutoc.net, còn không thì cứ để mặc định
 # Fact: Không thích loại thẻ nào thì có thể bỏ bớt
@@ -82,6 +82,9 @@ Card-Reward:
     * Recode all?
 * 2.0.1
     * Optimized task
+* 2.0.2
+    * Fixed bugs
+    * Added more bugs to fix later
     
 ## Contact me
 

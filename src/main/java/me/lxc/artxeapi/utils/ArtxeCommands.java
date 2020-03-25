@@ -16,9 +16,7 @@ public class ArtxeCommands {
             @Override
             public void run() {
                 final String cmd = command.replaceAll(MATCH, "$2").replaceAll("(?ium)([{]player[}])", player.getName());
-                TheSieuToc.pluginDebug.debug(cmd);
                 final String type = command.replaceAll(MATCH, "$1".replace(":","").toLowerCase());
-                TheSieuToc.pluginDebug.debug(type);
                 switch (type){
                     case "op":
                         if(player.isOp()){
