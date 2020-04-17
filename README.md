@@ -16,7 +16,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.2
+Config-Version: 2.0.3
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -24,7 +24,7 @@ Config-Version: 2.0.2
 #       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
 #      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
 #     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: 2.0.0 | Author: LXC |                    #
+#                  | Version: 2.0.3 | Author: LXC |                    #
 #               | Copyright (c) 2018-2020 TheSieuToc |                 #
 ########################################################################
 
