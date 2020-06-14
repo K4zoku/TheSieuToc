@@ -163,8 +163,8 @@ public class Commands extends BukkitCommand {
     }
 
     private boolean check(CommandSender sender, int arg, Messages msg){
-        if(sender.hasPermission("napthe.admin.check")){
-            if(arg == 1){
+        if (sender.hasPermission("napthe.admin.check")) {
+            if (arg == 1) {
                 CardCheckTask.checkAll();
                 sender.sendMessage(msg.checked);
                 return true;
@@ -182,7 +182,7 @@ public class Commands extends BukkitCommand {
         if (hasAPIInfo) {
             if (isPlayer) {
                 final Player player = (Player) sender;
-                for(String card : TheSieuToc.getInstance().getSettings().cardEnable){
+                for (String card : TheSieuToc.getInstance().getSettings().cardEnable) {
                     String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
                     String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
                     BaseComponent[] message = new ComponentBuilder(text)
@@ -207,16 +207,15 @@ public class Commands extends BukkitCommand {
                 try {
                     switch (args.length) {
                         case 1:
-                            CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), 10);
+                            CalculateTop.printTop(sender, CalculateTop.execute("total"), 10);
                             break;
                         case 2:
                             if (ArtxeNumber.isInteger(args[1])) {
-                                CalculateTop.printTop(sender, CalculateTop.execute("TOTAL"), Integer.parseInt(args[1]));
-                                break;
+                                CalculateTop.printTop(sender, CalculateTop.execute("total"), Integer.parseInt(args[1]));
                             } else {
                                 sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
-                                break;
                             }
+                            break;
                         case 3:
                             if (ArtxeNumber.isInteger(args[1])) {
                                 if (Stream.of("TOTAL", "DAY", "MONTH", "YEAR").anyMatch(args[2]::equalsIgnoreCase)) {

@@ -11,7 +11,7 @@ public class ArtxeCommands {
 
     private ArtxeCommands() {}
 
-    private static final String MATCH = "(?ium)^(player:|op:|console:)(.*)$";
+    private static final String MATCH = "(?ium)^(player:|op:|console:|)(.*)$";
 
     public static void dispatchCommand(Player player, String command) {
         new BukkitRunnable() {

@@ -14,7 +14,7 @@ public class ArtxeDebug {
         this.debugEnable = debugEnable;
     }
 
-    public void debug(String message){
+    public void debug(String message) {
         if(debugEnable) this.plugin.getLogger().log(Level.INFO, SUBPREFIX + message);
     }
 

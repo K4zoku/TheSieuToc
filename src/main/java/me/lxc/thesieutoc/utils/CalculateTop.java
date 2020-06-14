@@ -32,11 +32,11 @@ public class CalculateTop {
         List<String> log = getLogContent();
         List<String> matchDate = new ArrayList<>();
         Map<String, Integer> top;
-        if (type.contains(TOTAL)) {
+        if (type == null || (type.equalsIgnoreCase(TOTAL) || type.isEmpty())) {
             top = getSuccess(log);
         } else {
             String format;
-            switch (type) {
+            switch (type.toLowerCase()) {
                 case "month":
                     format = MONTH;
                     break;

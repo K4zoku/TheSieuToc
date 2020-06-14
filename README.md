@@ -16,7 +16,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.2
+Config-Version: 2.0.4
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -76,6 +76,10 @@ Card-Reward:
 
 * ~~1.0.0~~
     * ~~Complete plugin for first time yay~~
+* ~~1.0.1~~
+    * ~~Not found?~~
+* ~~1.0.2~~
+    * ~~Not found?~~
 * 1.0.3
     * Optimize code
 * 2.0.0
@@ -85,13 +89,19 @@ Card-Reward:
 * 2.0.2
     * Fixed bugs
     * Added more bugs to fix later
+* 2.0.3
+    * Optimize
+* 2.0.4
+    * Fixed logs/top bugs
     
 ## Contact me
 
-Takahata Shun – [me.takahatashun](https://www.facebook.com/100022162512692) – LXC#2324
+Takahata Shun – [me.takahatashun][facebook] – [@ztglxc][twitter] – LXC#2324
 
 <!-- Markdown link & img dfn's -->
 [releases]: https://github.com/takahatashun/TheSieuToc/releases/latest
 [settings-general]: https://github.com/takahatashun/TheSieuToc/blob/master/src/main/resources/settings/general.yml
 [languages-messages]: https://github.com/takahatashun/TheSieuToc/blob/master/src/main/resources/languages/messages.yml
 [ui-chat]: https://github.com/takahatashun/TheSieuToc/blob/master/src/main/resources/ui/chat.yml
+[facebook]: https://www.facebook.com/100022162512692
+[twitter]: https://twitter.com/i/user/962282900031877120

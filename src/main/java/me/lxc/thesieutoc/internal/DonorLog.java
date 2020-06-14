@@ -42,15 +42,14 @@ public class DonorLog {
         return true;
     }
 
-    public boolean createFile() {
+    public void createFile() {
         try {
             if (!(logFile.exists())) {
                 logFile.getParentFile().mkdir();
-                return logFile.createNewFile();
-            } else return true;
+                logFile.createNewFile();
+            }
         } catch (IOException e) {
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
-            return false;
         }
     }
 }
