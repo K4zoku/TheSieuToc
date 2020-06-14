@@ -6,18 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="Update to 2.0.3">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeDebug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" afterDir="false" />
-    </list>
+    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -198,7 +187,7 @@
       <workItem from="1587551310218" duration="235000" />
       <workItem from="1587911149392" duration="610000" />
       <workItem from="1589526527754" duration="680000" />
-      <workItem from="1592115513325" duration="780000" />
+      <workItem from="1592115513325" duration="1175000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -375,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585119490034</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Update to 2.0.4">
+      <created>1592116556586</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1592116556586</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +417,8 @@
     <MESSAGE value="Update to 2.0.1 stable" />
     <MESSAGE value="Update to 2.0.2" />
     <MESSAGE value="Update to 2.0.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to 2.0.3" />
+    <MESSAGE value="Update to 2.0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to 2.0.4" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -429,11 +426,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585105908661" />
-    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1592115885253">
+    <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1592116547992">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585119481473" />
-    <state x="423" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592115885253" />
+    <state x="423" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592116547992" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1585122456977">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -458,14 +455,23 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="380" y="165" key="IDE.errors.dialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584794832761" />
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1585119498985">
+    <state x="430" y="184" key="MultipleFileMergeDialog" timestamp="1592116580860">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="430" y="184" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1592116580860" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1592116677713">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585119498985" />
+    <state x="392" y="160" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592116677713" />
     <state x="530" y="200" key="extract.method.dialog" timestamp="1585115522679">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="200" key="extract.method.dialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585115522679" />
+    <state x="514" y="203" key="git4idea.merge.GitPullDialog" timestamp="1592116651321">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="514" y="203" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1592116651321" />
     <state x="182" y="96" key="new project wizard" timestamp="1585191368222">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
