@@ -1,4 +1,4 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.nap1s.internal;
 
 import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeTime;
@@ -12,8 +12,9 @@ public class Settings extends IConfiguration {
 
     public boolean debug;
 
-    public String iTheSieuTocKey;
-    public String iTheSieuTocSecret;
+    public String iNap1sKey;
+    public String iNap1sSecret;
+    public String nap1sMethod;
 
     public long cardCheckPeriod;
 
@@ -28,8 +29,9 @@ public class Settings extends IConfiguration {
     @Override
     public void load() {
         debug = yaml.getConfig().getBoolean("Debug", false);
-        iTheSieuTocKey = yaml.getConfig().get("TheSieuToc.API-Key").toString();
-        iTheSieuTocSecret = yaml.getConfig().get("TheSieuToc.API-Secret").toString();
+        iNap1sKey = yaml.getConfig().get("Nap1s.API-Key").toString();
+        iNap1sSecret = yaml.getConfig().get("Nap1s.API-Secret").toString();
+        nap1sMethod = yaml.getConfig().get("Nap1s.Method", "SLOW").toString();
         cardCheckPeriod = ArtxeTime.toTick(yaml.getConfig().get("Card-Check-Period","5m"));
         cardEnable = yaml.getConfig().getStringList("Card-Enabled");
         if (cardEnable == null || cardEnable.isEmpty()) cardEnable = Arrays.asList("Viettel", "Vinaphone", "Mobifone", "Vietnamobile", "Vcoin", "Zing", "Gate");

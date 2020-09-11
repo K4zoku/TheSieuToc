@@ -1,22 +1,19 @@
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.3
+Config-Version: 1.0.2
 
 ########################################################################
-#       ________            _____ _               ______               #
-#      /_  __/ /_  ___     / ___/(____  __  __   /_  ______  _____     #
-#       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
-#      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
-#     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: 2.0.3 | Author: LXC |                    #
-#               | Copyright (c) 2018-2020 TheSieuToc |                 #
+#                  | Version: 1.0.2 | Author: LXC |                    #
+#                 | Copyright (c) 2020-2020 Nap1s |                    #
 ########################################################################
-
 # /!\ Đừng bật nếu bạn không phải là nhà phát triển
 Debug: false
 
 # /!\ Bắt buộc phải điền, không điền thì chạy bằng niềm tin à? (╯°□°）╯︵ ┻━┻
-# [?] Bạn có thể lấy API key và API Secret tại https://thesieutoc.net/tich-hop-nap-the.html
-TheSieuToc:
+# [?] Bạn có thể lấy API key và API Secret tại https://nap1s.com/tich-hop
+Nap1s:
+  # [?] Có 2 phương thức: Nạp chậm, Nạp nhanh
+  #                       SLOW      AUTO
+  Method: AUTO
   API-Key: ''
   API-Secret: ''
 
@@ -26,16 +23,14 @@ TheSieuToc:
 #       second (s), minute (m), hour (h), day (d)
 Card-Check-Period: 1m
 
-# /!\ Phải nhập đúng tên thẻ có trên https://thesieutoc.net, còn không thì cứ để mặc định
+# /!\ Phải nhập đúng tên thẻ có trên https://nap1s.com, còn không thì cứ để mặc định
 # Fact: Không thích loại thẻ nào thì có thể bỏ bớt
 Card-Enabled:
   - 'Viettel'
   - 'Vinaphone'
   - 'Mobifone'
   - 'Vietnamobile'
-  - 'Vcoin'
   - 'Zing'
-  - 'Gate'
 
 # [?] Placeholder có thể dùng:
 #         ● {Player}: Tên người chơi

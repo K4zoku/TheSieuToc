@@ -1,10 +1,10 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.nap1s.internal;
 
 import me.lxc.artxeapi.utils.ArtxeNumber;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.handlers.InputCardHandler;
-import me.lxc.thesieutoc.tasks.CardCheckTask;
-import me.lxc.thesieutoc.utils.CalculateTop;
+import me.lxc.nap1s.Nap1S;
+import me.lxc.nap1s.handlers.InputCardHandler;
+import me.lxc.nap1s.tasks.CardCheckTask;
+import me.lxc.nap1s.utils.CalculateTop;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -29,11 +29,11 @@ public class Commands extends BukkitCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-        final Messages msg = TheSieuToc.getInstance().getMessages();
-        final Ui ui = TheSieuToc.getInstance().getUi();
+        final Messages msg = Nap1S.getInstance().getMessages();
+        final Ui ui = Nap1S.getInstance().getUi();
         final boolean isPlayer = sender instanceof Player;
         final Player player = isPlayer ? (Player) sender : null;
-        final boolean hasAPIInfo = TheSieuToc.getInstance().hasAPIInfo;
+        final boolean hasAPIInfo = Nap1S.getInstance().hasAPIInfo;
 
         switch (args.length){
             case 0:
@@ -148,7 +148,7 @@ public class Commands extends BukkitCommand {
     private boolean reload(CommandSender sender, int arg, Messages msg){
         if(sender.hasPermission("napthe.admin.reload")){
             if(arg == 1){
-                TheSieuToc.getInstance().reload((short) 0);
+                Nap1S.getInstance().reload((short) 0);
                 sender.sendMessage(msg.reloaded);
                 return true;
             } else {
@@ -182,7 +182,7 @@ public class Commands extends BukkitCommand {
         if (hasAPIInfo) {
             if (isPlayer) {
                 final Player player = (Player) sender;
-                for (String card : TheSieuToc.getInstance().getSettings().cardEnable) {
+                for (String card : Nap1S.getInstance().getSettings().cardEnable) {
                     String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
                     String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
                     BaseComponent[] message = new ComponentBuilder(text)
@@ -203,7 +203,7 @@ public class Commands extends BukkitCommand {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Messages msg = TheSieuToc.getInstance().getMessages();
+                Messages msg = Nap1S.getInstance().getMessages();
                 try {
                     switch (args.length) {
                         case 1:
@@ -230,15 +230,15 @@ public class Commands extends BukkitCommand {
                             sender.sendMessage(msg.tooManyArgs);
                     }
                 } catch (Exception e) {
-                    TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+                    Nap1S.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
                 }
             }
-        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        }.runTaskAsynchronously(Nap1S.getInstance());
         return true;
     }
 
     private void chooseAmount(Player player, String type, Ui ui){
-        for(Integer amount : TheSieuToc.getInstance().getSettings().amountList){
+        for(Integer amount : Nap1S.getInstance().getSettings().amountList){
             String text = ui.cardAmountText.replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
@@ -267,11 +267,11 @@ public class Commands extends BukkitCommand {
     }
 
     static boolean isValidCard(String type){
-        return TheSieuToc.getInstance().getSettings().cardEnable.stream().anyMatch(type::equalsIgnoreCase);
+        return Nap1S.getInstance().getSettings().cardEnable.stream().anyMatch(type::equalsIgnoreCase);
     }
 
     static boolean isValidAmount(int a){
-        for (int amount : TheSieuToc.getInstance().getSettings().amountList) {
+        for (int amount : Nap1S.getInstance().getSettings().amountList) {
             if (amount == a) {
                 return true;
             }

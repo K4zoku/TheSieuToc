@@ -1,12 +1,12 @@
-package me.lxc.thesieutoc;
+package me.lxc.nap1s;
 
+import com.nap1s.data.CardInfo;
 import me.lxc.artxeapi.data.ArtxeYAML;
 import me.lxc.artxeapi.utils.ArtxeDebug;
 import me.lxc.artxeapi.utils.ArtxeTime;
-import me.lxc.thesieutoc.event.PlayerChat;
-import me.lxc.thesieutoc.internal.*;
-import me.lxc.thesieutoc.tasks.CardCheckTask;
-import net.thesieutoc.data.CardInfo;
+import me.lxc.nap1s.event.PlayerChat;
+import me.lxc.nap1s.internal.*;
+import me.lxc.nap1s.tasks.CardCheckTask;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.entity.Player;
@@ -23,14 +23,14 @@ import java.util.logging.Level;
 
 import static me.lxc.artxeapi.utils.ArtxeChat.console;
 
-public final class TheSieuToc extends JavaPlugin {
+public final class Nap1S extends JavaPlugin {
     public static String pluginVersion;
     public static ArtxeDebug pluginDebug;
 
     private static final String CMD = "donate";
     private static final String CMD_DESCRIPTION = "Nạp thẻ";
     private static final String CMD_USAGE = "/<command>";
-    private static final List<String> CMD_ALIASES = Arrays.asList("napthe", "nạpthẻ", "nạp_thẻ", "thesieutoc", "tst", "thẻsiêutốc", "thẻ_siêu_tốc");
+    private static final List<String> CMD_ALIASES = Arrays.asList("napthe", "nạpthẻ", "nạp_thẻ", "nap1s");
 
     private Settings settings;
     private DonorLog donorLog;
@@ -40,7 +40,7 @@ public final class TheSieuToc extends JavaPlugin {
 
     public boolean hasAPIInfo;
     public CardCheckTask cardCheckTask;
-    private static TheSieuToc instance;
+    private static Nap1S instance;
 
     @Override
     public void onEnable() {
@@ -57,20 +57,15 @@ public final class TheSieuToc extends JavaPlugin {
 
     private void preStartup() {
         pluginVersion = getDescription().getVersion();
-        console("§b  ________            _____ _               ______");
-        console("§b  /_  __/ /_  ___     / ___/(____  __  __   /_  ______  _____");
-        console("§b   / / / __ \\/ _ \\    \\__ \\/ / _ \\/ / / /    / / / __ \\/ ___/");
-        console("§b  / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__");
-        console("§b /_/ /_/ /_/\\___/   /____/_/\\___/\\__._/    /_/  \\____/\\___/");
         console("               §f| §bVersion: §6" + pluginVersion + " §f| §bAuthor: §6LXC §f|");
-        console("            §f| §aCopyright (c) 2018-" + ArtxeTime.getCurrentYear() + " §bTheSieuToc §f|");
+        console("              §f| §aCopyright (c) 2020-" + ArtxeTime.getCurrentYear() + "  §bNap1s §f|");
         instance = this;
         queue = new HashMap<>();
     }
 
     public void loadData() {
         settings = new Settings(new ArtxeYAML(this, getDataFolder() + File.separator + "settings", "general.yml", "settings"));
-        hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
+        hasAPIInfo = !(settings.iNap1sKey.isEmpty() && settings.iNap1sSecret.isEmpty());
         donorLog = new DonorLog(new File(getDataFolder() + File.separator + "logs", "donation.log"));
         pluginDebug = new ArtxeDebug(this, settings.debug);
         messages = new Messages(new ArtxeYAML(this, getDataFolder() + File.separator + "languages", "messages.yml", "languages"));
@@ -85,7 +80,7 @@ public final class TheSieuToc extends JavaPlugin {
             case 3: ui.reload(); break;
             default:
                 settings.reload();
-                hasAPIInfo = !(settings.iTheSieuTocKey.isEmpty() && settings.iTheSieuTocSecret.isEmpty());
+                hasAPIInfo = !(settings.iNap1sKey.isEmpty() && settings.iNap1sSecret.isEmpty());
                 pluginDebug = new ArtxeDebug(this, settings.debug);
                 messages.reload();
                 ui.reload();
@@ -110,7 +105,7 @@ public final class TheSieuToc extends JavaPlugin {
         bkplm.registerEvents(new PlayerChat(), this);
     }
 
-    public static TheSieuToc getInstance() {
+    public static Nap1S getInstance() {
         return instance;
     }
 

@@ -1,6 +1,7 @@
 # /!\ Không thay đổi giá trị này
 Config-Version: ${project.version}
 
+Prefix: '&a[&bNap&c1s&a] '
 Input-Serial: '&aNhập số Serial'
 Input-Pin: '&aNhập mã thẻ'
 Serial: '&aBạn đã nhập seri &f"{Serial}"'

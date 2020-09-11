@@ -1,7 +1,7 @@
-package me.lxc.thesieutoc.utils;
+package me.lxc.nap1s.utils;
 
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.internal.Messages;
+import me.lxc.nap1s.Nap1S;
+import me.lxc.nap1s.internal.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -19,7 +19,7 @@ public class CalculateTop {
     private static long serverTotal = 0;
 
     private static List<String> getLogContent() throws Exception {
-        File log = TheSieuToc.getInstance().getDonorLog().logFile;
+        File log = Nap1S.getInstance().getDonorLog().logFile;
         Scanner s = new Scanner(log);
         List<String> logContent = new ArrayList<>();
         while (s.hasNextLine()) {
@@ -92,7 +92,7 @@ public class CalculateTop {
     }
 
     public static void printTop(CommandSender sender, Map<String, Integer> top, int limit) {
-        final Messages msg = TheSieuToc.getInstance().getMessages();
+        final Messages msg = Nap1S.getInstance().getMessages();
         sender.sendMessage(msg.calculating);
         int i = 0;
         String playerName = sender.getName();

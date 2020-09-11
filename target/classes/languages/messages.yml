@@ -1,6 +1,7 @@
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.3
+Config-Version: 1.0.2
 
+Prefix: '&a[&bNap&c1s&a] '
 Input-Serial: '&aNhập số Serial'
 Input-Pin: '&aNhập mã thẻ'
 Serial: '&aBạn đã nhập seri &f"{Serial}"'

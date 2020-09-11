@@ -5,20 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.lxc</groupId>
-    <artifactId>thesieutoc</artifactId>
-    <version>2.0.4</version>
+    <artifactId>nap1s</artifactId>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>TheSieuToc</name>
 
-    <description>Plugin nạp thẻ thông qua API của thesieutoc.net</description>
+    <description>Plugin nạp thẻ thông qua API của nap1s.com</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.projectKey>TheSieuToc</sonar.projectKey>
-        <sonar.organization>takahatashun-github</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.login>c4634f6385362d4b6ff920a53590c4855a14363f</sonar.login>
     </properties>
     <url>https://thesieutoc.net</url>
 

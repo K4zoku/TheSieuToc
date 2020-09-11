@@ -5,8 +5,38 @@
       <artifact name="TheSieuToc" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="" />
+    <list default="true" id="005c0b43-077c-43f2-a1b0-0058e3098ac8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/data/ArtxeYAML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/artxeapi/utils/ArtxeCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/TheSieuToc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/Nap1S.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/event/PlayerChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/event/PlayerChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/handlers/InputCardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/handlers/InputCardHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/DonorLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/DonorLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/IConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/IConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/internal/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/internal/Ui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/tasks/CardCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/tasks/CardCheckTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/lxc/thesieutoc/utils/CalculateTop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/lxc/nap1s/utils/CalculateTop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/thesieutoc/TheSieuTocAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nap1s/Nap1sAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/thesieutoc/data/CardAmount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/thesieutoc/data/CardInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nap1s/data/CardInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/languages/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/languages/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/languages/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/settings/general.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/settings/general.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/chat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/chat.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +85,11 @@
     </option>
   </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\LXC\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.6948.69\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="downloadDocsAutomatically" value="true" />
@@ -137,6 +172,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\LXC\AppData\Roaming\Subversion</configuration>
   </component>
@@ -188,6 +224,10 @@
       <workItem from="1587911149392" duration="610000" />
       <workItem from="1589526527754" duration="680000" />
       <workItem from="1592115513325" duration="1175000" />
+      <workItem from="1599024474664" duration="928000" />
+      <workItem from="1599314066256" duration="8081000" />
+      <workItem from="1599353541113" duration="2689000" />
+      <workItem from="1599637240258" duration="628000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1583331803226</created>
@@ -375,7 +415,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
@@ -422,39 +462,26 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1585105908661">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="605" y="134" key="#com.intellij.ide.util.MemberChooser/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585105908661" />
     <state x="423" y="0" key="CommitChangelistDialog2" timestamp="1592116547992">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="423" y="0" key="CommitChangelistDialog2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585119481473" />
     <state x="423" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592116547992" />
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1585122456977">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1323" height="172" key="GridCell.Tab.0.bottom" timestamp="1599360953923">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585122456977" />
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom" timestamp="1585056701241">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1323" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599360953923" />
+    <state width="1323" height="172" key="GridCell.Tab.0.center" timestamp="1599360953923">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.bottom/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585056701241" />
-    <state width="1557" height="202" key="GridCell.Tab.0.center" timestamp="1585056701241">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1323" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599360953923" />
+    <state width="1323" height="172" key="GridCell.Tab.0.left" timestamp="1599360953923">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.center/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585056701241" />
-    <state width="1557" height="202" key="GridCell.Tab.0.left" timestamp="1585056701241">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1323" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599360953923" />
+    <state width="1323" height="172" key="GridCell.Tab.0.right" timestamp="1599360953923">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.left/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585056701241" />
-    <state width="1557" height="202" key="GridCell.Tab.0.right" timestamp="1585056701241">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state width="1557" height="202" key="GridCell.Tab.0.right/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585056701241" />
-    <state x="380" y="165" key="IDE.errors.dialog" timestamp="1584794832761">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="380" y="165" key="IDE.errors.dialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1584794832761" />
+    <state width="1323" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599360953923" />
     <state x="430" y="184" key="MultipleFileMergeDialog" timestamp="1592116580860">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -462,23 +489,10 @@
     <state x="392" y="160" key="Vcs.Push.Dialog.v2" timestamp="1592116677713">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="160" key="Vcs.Push.Dialog.v2/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585119498985" />
     <state x="392" y="160" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592116677713" />
-    <state x="530" y="200" key="extract.method.dialog" timestamp="1585115522679">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="200" key="extract.method.dialog/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585115522679" />
     <state x="514" y="203" key="git4idea.merge.GitPullDialog" timestamp="1592116651321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="514" y="203" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1592116651321" />
-    <state x="182" y="96" key="new project wizard" timestamp="1585191368222">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="182" y="96" key="new project wizard/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585191368222" />
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1585056674845">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="456" y="195" width="672" height="677" key="run.anything.popup/-1366.469.1366.728/0.0.1600.860@0.0.1600.860" timestamp="1585056674845" />
   </component>
 </project>

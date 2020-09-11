@@ -1,4 +1,4 @@
-package net.thesieutoc.data;
+package com.nap1s.data;
 
 public class CardInfo {
     public String transactionID;

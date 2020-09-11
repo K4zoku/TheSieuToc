@@ -1,11 +1,11 @@
-package me.lxc.thesieutoc.tasks;
+package me.lxc.nap1s.tasks;
 
 import com.google.gson.JsonObject;
+import com.nap1s.Nap1sAPI;
+import com.nap1s.data.CardInfo;
 import me.lxc.artxeapi.utils.ArtxeCommands;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.internal.Messages;
-import net.thesieutoc.TheSieuTocAPI;
-import net.thesieutoc.data.CardInfo;
+import me.lxc.nap1s.Nap1S;
+import me.lxc.nap1s.internal.Messages;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CardCheckTask extends BukkitRunnable {
 
-    public CardCheckTask(TheSieuToc instance) {
+    public CardCheckTask(Nap1S instance) {
         this.runTaskTimer(instance, 0L, instance.getSettings().cardCheckPeriod);
     }
 
@@ -29,8 +29,8 @@ public class CardCheckTask extends BukkitRunnable {
         new BukkitRunnable(){
             @Override
             public void run() {
-                TheSieuToc.pluginDebug.debug("Checking in progress...");
-                for(Map.Entry<Player, List<CardInfo>> playerCards : TheSieuToc.getInstance().queue.entrySet()){
+                Nap1S.pluginDebug.debug("Checking in progress...");
+                for(Map.Entry<Player, List<CardInfo>> playerCards : Nap1S.getInstance().queue.entrySet()){
                     Player player = playerCards.getKey();
                     List<CardInfo> cards = playerCards.getValue();
                     List<CardInfo> removeQueue = new ArrayList<>();
@@ -38,44 +38,48 @@ public class CardCheckTask extends BukkitRunnable {
                         checkOne(player, card, removeQueue);
                     }
                     cards.removeAll(removeQueue);
-                    TheSieuToc.getInstance().queue.replace(player, cards);
+                    Nap1S.getInstance().queue.replace(player, cards);
                 }
             }
-        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        }.runTaskAsynchronously(Nap1S.getInstance());
     }
 
     public static boolean checkOne(final Player player, final CardInfo card, List<CardInfo> removeQueue) {
-        final Messages messages = TheSieuToc.getInstance().getMessages();
+        final Messages messages = Nap1S.getInstance().getMessages();
+        final boolean isOnline = player.isOnline();
         String notes;
-        JsonObject checkCard = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
-        TheSieuToc.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
-        String status = checkCard.get("status").getAsString();
-        boolean isOnline = player.isOnline();
+        JsonObject checkCard = Nap1sAPI.checkCard(Nap1S.getInstance().getSettings().iNap1sKey, Nap1S.getInstance().getSettings().iNap1sSecret, card.transactionID);
+        Nap1S.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
+        if (checkCard == null || !checkCard.has("result")) {
+            if (isOnline) player.sendMessage(messages.systemError);
+            return false;
+        }
+        int status = checkCard.get("result").getAsJsonObject().get("status").getAsInt();
         switch (status) {
-            case "00":
+            case 200:
                 if(isOnline) player.sendMessage(messages.success.replaceAll("(?ium)[{]Amount[}]", String.valueOf(card.amount)));
                 successAction(player, card.amount);
                 notes = ChatColor.stripColor(messages.success);
-                TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, true, notes);
+                Nap1S.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, true, notes);
                 if (removeQueue != null) removeQueue.add(card);
                 break;
-            case "-9":
+            case 201:
                 if(isOnline) player.sendMessage(messages.awaitingApproval);
                 return true;
             default:
                 if(isOnline) {
                     player.sendMessage(messages.fail);
-                    player.sendMessage(checkCard.get("msg").getAsString());
+                    player.sendMessage(checkCard.get("result").getAsJsonObject().get("msg").getAsString());
                 }
-                notes = checkCard.get("msg").getAsString();
+                notes = checkCard.get("result").getAsJsonObject().get("msg").getAsString();
                 if (removeQueue != null) removeQueue.add(card);
-                TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
+                Nap1S.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
         }
         return false;
     }
 
     private static void successAction(Player player, int amount) {
-        List<String> commands = TheSieuToc.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
+        List<String> commands = Nap1S.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
         for (String command : commands) {
             ArtxeCommands.dispatchCommand(player, command);
         }

@@ -1,7 +1,7 @@
-name: TheSieuToc
+name: Nap1S
 version: ${project.version}
-main: me.lxc.thesieutoc.TheSieuToc
-prefix: TheSieuToc
+main: me.lxc.nap1s.Nap1S
+prefix: Nap1S
 authors: [LXC]
-description: Plugin nạp thẻ thông qua API của thesieutoc.net
-website: https://thesieutoc.net
+description: Plugin nạp thẻ thông qua API của Nap1S
+website: https://nap1s.com

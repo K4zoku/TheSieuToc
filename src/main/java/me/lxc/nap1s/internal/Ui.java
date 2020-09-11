@@ -1,4 +1,4 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.nap1s.internal;
 
 import me.lxc.artxeapi.data.ArtxeYAML;
 

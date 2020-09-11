@@ -1,6 +1,6 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.nap1s.internal;
 
-import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.nap1s.Nap1S;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedWriter;
@@ -37,7 +37,7 @@ public class DonorLog {
                     append(" | NOTES ").append(notes);
             bw.newLine();
         } catch (IOException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            Nap1S.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
         return true;
     }
@@ -49,7 +49,7 @@ public class DonorLog {
                 logFile.createNewFile();
             }
         } catch (IOException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            Nap1S.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
     }
 }
