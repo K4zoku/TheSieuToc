@@ -2,13 +2,8 @@
 Config-Version: ${project.version}
 
 ########################################################################
-#       ________            _____ _               ______               #
-#      /_  __/ /_  ___     / ___/(____  __  __   /_  ______  _____     #
-#       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
-#      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
-#     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
 #                  | Version: ${project.version} | Author: LXC |                    #
-#               | Copyright (c) 2018-2020 TheSieuToc |                 #
+#               | Copyright (c) 2018-2020 TheCaoFast |                 #
 ########################################################################
 
 # /!\ Đừng bật nếu bạn không phải là nhà phát triển
@@ -20,8 +15,8 @@ Cache:
   TTL: 5m
 
 # /!\ Bắt buộc phải điền, không điền thì chạy bằng niềm tin à? (╯°□°）╯︵ ┻━┻
-# [?] Bạn có thể lấy API key và API Secret tại https://thesieutoc.net/tich-hop-nap-the.html
-TheSieuToc:
+# [?] Bạn có thể lấy API key và API Secret tại https://thecaofast.net
+TheCaoFast:
   API-Key: ''
   API-Secret: ''
 
@@ -31,7 +26,7 @@ TheSieuToc:
 #       second (s), minute (m), hour (h), day (d)
 Card-Check-Period: 1m
 
-# /!\ Phải nhập đúng tên thẻ có trên https://thesieutoc.net, còn không thì cứ để mặc định
+# /!\ Phải nhập đúng tên thẻ có trên https://thecaofast.net, còn không thì cứ để mặc định
 # Fact: Không thích loại thẻ nào thì có thể bỏ bớt
 Card-Enabled:
   - 'Viettel'

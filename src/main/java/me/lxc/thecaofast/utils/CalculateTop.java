@@ -1,9 +1,9 @@
-package me.lxc.thesieutoc.utils;
+package me.lxc.thecaofast.utils;
 
 import javafx.util.Pair;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.internal.DornorLogElement;
-import me.lxc.thesieutoc.internal.Messages;
+import me.lxc.thecaofast.TheCaoFast;
+import me.lxc.thecaofast.internal.DornorLogElement;
+import me.lxc.thecaofast.internal.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -41,21 +41,21 @@ public class CalculateTop {
     private static List<DornorLogElement> getLogContent() throws Exception {
         List<DornorLogElement> logContent = new ArrayList<>();
         if (logCache == null || logCache.getKey().before(new Date())) {
-            TheSieuToc.pluginDebug.debug("Loading log from file...");
-            File log = TheSieuToc.getInstance().getDonorLog().logFile;
+            TheCaoFast.pluginDebug.debug("Loading log from file...");
+            File log = TheCaoFast.getInstance().getDonorLog().logFile;
             Scanner s = new Scanner(log);
             while (s.hasNextLine()) {
                 logContent.add(DornorLogElement.getFromLine(s.nextLine()));
             }
             s.close();
-            Date expire = new Date(System.currentTimeMillis() + TheSieuToc.getInstance().getSettings().cacheTTL);
+            Date expire = new Date(System.currentTimeMillis() + TheCaoFast.getInstance().getSettings().cacheTTL);
             logCache = new Pair<>(expire, logContent);
         } else {
             long start = System.currentTimeMillis();
             long end = logCache.getKey().getTime();
             long ttl = (end - start) / 1000;
 
-            TheSieuToc.pluginDebug.debug("Loading log from cache... (TTL: " + ttl + ")");
+            TheCaoFast.pluginDebug.debug("Loading log from cache... (TTL: " + ttl + ")");
             logContent = logCache.getValue();
         }
         return logContent;
@@ -122,7 +122,7 @@ public class CalculateTop {
     }
 
     public static void printTop(CommandSender sender, Map<String, Integer> top, int limit) {
-        final Messages msg = TheSieuToc.getInstance().getMessages();
+        final Messages msg = TheCaoFast.getInstance().getMessages();
         sender.sendMessage(msg.calculating);
         String playerName = sender.getName();
         if (top.isEmpty()) {

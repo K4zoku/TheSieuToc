@@ -1,13 +1,13 @@
-package me.lxc.thesieutoc.event;
+package me.lxc.thecaofast.event;
 
 import com.google.gson.JsonObject;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.internal.Messages;
-import me.lxc.thesieutoc.internal.Settings;
-import me.lxc.thesieutoc.internal.Ui;
-import me.lxc.thesieutoc.tasks.CardCheckTask;
-import net.thesieutoc.TheSieuTocAPI;
-import net.thesieutoc.data.CardInfo;
+import me.lxc.thecaofast.TheCaoFast;
+import me.lxc.thecaofast.internal.Messages;
+import me.lxc.thecaofast.internal.Settings;
+import me.lxc.thecaofast.internal.Ui;
+import me.lxc.thecaofast.tasks.CardCheckTask;
+import net.thecaofast.TheCaoFastAPI;
+import net.thecaofast.data.CardInfo;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,16 +18,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.lxc.thesieutoc.handlers.InputCardHandler.*;
+import static me.lxc.thecaofast.handlers.InputCardHandler.*;
 
 public class PlayerChat implements Listener {
 
     @EventHandler
     public void event(AsyncPlayerChatEvent e) {
         final String text = ChatColor.stripColor(e.getMessage());
-        final Settings settings = TheSieuToc.getInstance().getSettings();
-        final Messages msg = TheSieuToc.getInstance().getMessages();
-        final Ui ui = TheSieuToc.getInstance().getUi();
+        final Settings settings = TheCaoFast.getInstance().getSettings();
+        final Messages msg = TheCaoFast.getInstance().getMessages();
+        final Ui ui = TheCaoFast.getInstance().getUi();
         final Player player = e.getPlayer();
 
         if (stepOne(player) && !stepTwo(player)) {
@@ -50,32 +50,33 @@ public class PlayerChat implements Listener {
                 LocalCardInfo info = lastStep(player, text);
                 unTriggerStep2(player);
                 player.sendMessage(msg.pin.replaceAll("(?ium)[{]Pin[}]", text));
-                JsonObject sendCard = TheSieuTocAPI.sendCard(settings.iTheSieuTocKey, settings.iTheSieuTocSecret, info.type, info.amount, info.serial, info.pin);
-                TheSieuToc.pluginDebug.debug("Response: " + (sendCard != null ? sendCard.toString() : "NULL"));
+                JsonObject sendCard = TheCaoFastAPI.sendCard(settings.iTheCaoFastKey, settings.iTheCaoFastSecret, info.type, info.amount, info.serial, info.pin);
+                TheCaoFast.pluginDebug.debug("Response: " + (sendCard != null ? sendCard.toString() : "NULL"));
                 assert sendCard != null;
-                if (!sendCard.get("status").getAsString().equals("00")) {
+                JsonObject result = sendCard.get("result").getAsJsonObject();
+                if (result.get("status").getAsInt() != 201) {
                     player.sendMessage(msg.fail);
-                    player.sendMessage(sendCard.get("msg").getAsString());
+                    player.sendMessage(result.get("msg").getAsString());
                     return;
                 }
-                String transactionID = sendCard.get("transaction_id").getAsString();
-                CardInfo tstInfo = new CardInfo(transactionID, info.type, info.amount, info.serial, info.pin);
+                String transactionID = result.get("transaction_id").getAsString();
+                CardInfo tcfInfo = new CardInfo(transactionID, info.type, info.amount, info.serial, info.pin);
 
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        if (CardCheckTask.checkOne(player, tstInfo, null)) {
-                            List<CardInfo> queue = TheSieuToc.getInstance().queue.get(player);
+                        if (CardCheckTask.checkOne(player, tcfInfo, null)) {
+                            List<CardInfo> queue = TheCaoFast.getInstance().queue.get(player);
                             if (queue == null) {
                                 queue = new ArrayList<>();
                             }
-                            queue.add(tstInfo);
-                            if (TheSieuToc.getInstance().queue.containsKey(player))
-                                TheSieuToc.getInstance().queue.replace(player, queue);
-                            else TheSieuToc.getInstance().queue.put(player, queue);
+                            queue.add(tcfInfo);
+                            if (TheCaoFast.getInstance().queue.containsKey(player))
+                                TheCaoFast.getInstance().queue.replace(player, queue);
+                            else TheCaoFast.getInstance().queue.put(player, queue);
                         }
                     }
-                }.runTaskLaterAsynchronously(TheSieuToc.getInstance(), 20L);
+                }.runTaskLaterAsynchronously(TheCaoFast.getInstance(), 20L);
             } else {
                 unTriggerStep2(player);
                 purgePlayer(player);

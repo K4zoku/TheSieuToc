@@ -1,13 +1,7 @@
-# TheSieuToc
-> A minecraft plugin that allows players donate via TheSieuTocAPI.
+# TheCaoFast
+> A minecraft plugin that allows players donate via TheCaoFast APIV4.
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=alert_status)](https://sonarcloud.io/dashboard?id=TheSieuToc)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=security_rating)](https://sonarcloud.io/dashboard?id=TheSieuToc)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=TheSieuToc&metric=ncloc)](https://sonarcloud.io/dashboard?id=TheSieuToc)
-
-[![Header Image](header.png)](header.png)
+[![Header Image](https://thecaofast.net/assets/image/logone.png)](https://thecaofast.net/assets/image/logone.png)
 
 ## Installation
 Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plugins`
@@ -16,16 +10,11 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.5
+Config-Version: 1.0.0
 
 ########################################################################
-#       ________            _____ _               ______               #
-#      /_  __/ /_  ___     / ___/(____  __  __   /_  ______  _____     #
-#       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
-#      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
-#     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: 2.0.5 | Author: LXC |                    #
-#               | Copyright (c) 2018-2020 TheSieuToc |                 #
+#                  | Version: 1.0.0 | Author: LXC |                    #
+#               | Copyright (c) 2020-2020 TheCaoFast |                 #
 ########################################################################
 
 # /!\ Đừng bật nếu bạn không phải là nhà phát triển
@@ -38,7 +27,7 @@ Cache:
 
 # /!\ Bắt buộc phải điền, không điền thì chạy bằng niềm tin à? (╯°□°）╯︵ ┻━┻
 # [?] Bạn có thể lấy API key và API Secret tại https://thesieutoc.net/tich-hop-nap-the.html
-TheSieuToc:
+TheCaoFast:
   API-Key: ''
   API-Secret: ''
 
@@ -79,30 +68,8 @@ Card-Reward:
 
 ## Release History
 
-* ~~1.0.0~~
-    * ~~Complete plugin for first time yay~~
-* ~~1.0.1~~
-    * ~~Not found?~~
-* ~~1.0.2~~
-    * ~~Not found?~~
-* 1.0.3
-    * Optimize code
-* 2.0.0
-    * Recode all?
-* 2.0.1
-    * Optimized task
-* 2.0.2
-    * Fixed bugs
-    * Added more bugs to fix later
-* 2.0.3
-    * Optimize
-* 2.0.4
-    * Fixed logs/top bugs
-* 2.0.5
-    * Optimize code
-    * Add command `napthe.admin.give | /donate give {player} {amount} [{note}..]`
-    * Add in-memory log cache
-    * Add command `napthe.admin.cache.clear | /donate clear-cache`
+* 1.0.0
+    * Copy all feature from TheSieuToc (2.0.5)
     
 ## Contact me
 

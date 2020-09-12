@@ -1,7 +1,7 @@
-name: TheSieuToc
+name: TheCaoFast
 version: ${project.version}
-main: me.lxc.thesieutoc.TheSieuToc
-prefix: TheSieuToc
-authors: [LXC]
-description: Plugin nạp thẻ thông qua API của thesieutoc.net
-website: https://thesieutoc.net
+main: me.lxc.thecaofast.TheCaoFast
+prefix: TheCaoFast
+authors: [ LXC ]
+description: Plugin nạp thẻ thông qua APIV4 của thecaofast.net
+website: https://thecaofast.net

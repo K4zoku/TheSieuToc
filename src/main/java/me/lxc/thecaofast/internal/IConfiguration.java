@@ -1,7 +1,7 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.thecaofast.internal;
 
 import me.lxc.artxeapi.data.ArtxeYAML;
-import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thecaofast.TheCaoFast;
 
 import java.util.List;
 
@@ -23,10 +23,10 @@ public class IConfiguration {
     }
 
     protected String getString(String path, String def) {
-        return configVersion.equals(TheSieuToc.pluginVersion) ? this.yaml.getConfig().getString(path, def) : def;
+        return configVersion.equals(TheCaoFast.pluginVersion) ? this.yaml.getConfig().getString(path, def) : def;
     }
 
     protected List<String> getStringList(String path, List<String> def) {
-        return configVersion.equals(TheSieuToc.pluginVersion) ? this.yaml.getConfig().getStringList(path) : def;
+        return configVersion.equals(TheCaoFast.pluginVersion) ? this.yaml.getConfig().getStringList(path) : def;
     }
 }

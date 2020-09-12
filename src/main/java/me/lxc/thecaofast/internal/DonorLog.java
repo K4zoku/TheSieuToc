@@ -1,7 +1,7 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.thecaofast.internal;
 
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.utils.CalculateTop;
+import me.lxc.thecaofast.TheCaoFast;
+import me.lxc.thecaofast.utils.CalculateTop;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedWriter;
@@ -49,15 +49,15 @@ public class DonorLog {
         try {
             CalculateTop.appendToCache(DornorLogElement.getFromLine(content.toString()));
         } catch (ParseException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            TheCaoFast.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
-        TheSieuToc.pluginDebug.debug("| Dornor Log [> " + content);
+        TheCaoFast.pluginDebug.debug("| Dornor Log [> " + content);
         try (FileWriter fw = new FileWriter(logFile, true); BufferedWriter bw = new BufferedWriter(fw)) {
             bw.append(content.toString());
             bw.newLine();
             bw.flush();
         } catch (IOException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            TheCaoFast.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
     }
 
@@ -69,7 +69,7 @@ public class DonorLog {
                 logFile.createNewFile();
             }
         } catch (IOException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+            TheCaoFast.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
     }
 }

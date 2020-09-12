@@ -1,6 +1,6 @@
-package me.lxc.thesieutoc.handlers;
+package me.lxc.thecaofast.handlers;
 
-import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thecaofast.TheCaoFast;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class InputCardHandler {
 
     public static void triggerStepOne(Player player, String type, int amount) {
         if(!stepOne(player) && !cards.containsKey(player)) {
-            player.sendMessage(TheSieuToc.getInstance().getMessages().inputSerial);
+            player.sendMessage(TheCaoFast.getInstance().getMessages().inputSerial);
             inputStepOne.add(player);
             cards.put(player, new LocalCardInfo(type, amount, "", ""));
         }
@@ -32,7 +32,7 @@ public class InputCardHandler {
 
     public static void triggerStepTwo(Player player, String serial) {
         if (!stepTwo(player) && cards.containsKey(player)) {
-            player.sendMessage(TheSieuToc.getInstance().getMessages().inputPin);
+            player.sendMessage(TheCaoFast.getInstance().getMessages().inputPin);
             inputStepTwo.add(player);
             final LocalCardInfo info = cards.get(player);
             cards.replace(player, new LocalCardInfo(info.type, info.amount, serial, ""));

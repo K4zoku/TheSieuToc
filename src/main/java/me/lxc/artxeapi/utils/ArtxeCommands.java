@@ -1,6 +1,6 @@
 package me.lxc.artxeapi.utils;
 
-import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thecaofast.TheCaoFast;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,7 +19,7 @@ public class ArtxeCommands {
             public void run() {
                 final String type = command.replaceAll(MATCH, "$1").replace(":","").toLowerCase();
                 final String cmd = command.replaceAll(MATCH, "$2").replaceAll("(?ium)([{]Player[}])", player.getName());
-                TheSieuToc.pluginDebug.debug(MessageFormat.format("Run command: '{'type: {0}, command: {1}'}'", type, cmd));
+                TheCaoFast.pluginDebug.debug(MessageFormat.format("Run command: '{'type: {0}, command: {1}'}'", type, cmd));
                 switch (type){
                     case "op":
                         if(player.isOp()){
@@ -40,6 +40,6 @@ public class ArtxeCommands {
                         break;
                 }
             }
-        }.runTask(TheSieuToc.getInstance());
+        }.runTask(TheCaoFast.getInstance());
     }
 }

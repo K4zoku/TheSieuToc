@@ -1,4 +1,4 @@
-package net.thesieutoc.data;
+package net.thecaofast.data;
 
 public class CardInfo {
     public String transactionID;
@@ -17,6 +17,6 @@ public class CardInfo {
 
     @Override
     public String toString() {
-        return String.format("{\"transactionID\": \"%s\", \"type\": \"%s\", \"serial\": \"%s\", \"pin\": \"%s\", \"amount\": %d", transactionID, type, serial, pin, amount);
+        return String.format("{\"transactionID\": \"%s\", \"type\": \"%s\", \"serial\": \"%s\", \"pin\": \"%s\", \"amount\": %d}", transactionID, type, serial, pin, amount);
     }
 }

@@ -1,10 +1,10 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.thecaofast.internal;
 
 import me.lxc.artxeapi.utils.ArtxeNumber;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.handlers.InputCardHandler;
-import me.lxc.thesieutoc.tasks.CardCheckTask;
-import me.lxc.thesieutoc.utils.CalculateTop;
+import me.lxc.thecaofast.TheCaoFast;
+import me.lxc.thecaofast.handlers.InputCardHandler;
+import me.lxc.thecaofast.tasks.CardCheckTask;
+import me.lxc.thecaofast.utils.CalculateTop;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -30,11 +30,11 @@ public class Commands extends BukkitCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-        final Messages msg = TheSieuToc.getInstance().getMessages();
-        final Ui ui = TheSieuToc.getInstance().getUi();
+        final Messages msg = TheCaoFast.getInstance().getMessages();
+        final Ui ui = TheCaoFast.getInstance().getUi();
         final boolean isPlayer = sender instanceof Player;
         final Player player = isPlayer ? (Player) sender : null;
-        final boolean hasAPIInfo = TheSieuToc.getInstance().hasAPIInfo;
+        final boolean hasAPIInfo = TheCaoFast.getInstance().hasAPIInfo;
 
         switch (args.length) {
             case 0:
@@ -170,7 +170,7 @@ public class Commands extends BukkitCommand {
                     if (ArtxeNumber.isInteger(args[2])) {
                         String playerName = args[1];
                         int amount = Integer.parseInt(args[2]);
-                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, "FROM GIVE COMMAND");
+                        TheCaoFast.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, "FROM GIVE COMMAND");
                         sender.sendMessage(msg.given.replaceAll("(?ium)[{]Player[}]", playerName).replaceAll("(?ium)[{]Amount[}]", args[2]));
                     } else {
                         sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
@@ -182,7 +182,7 @@ public class Commands extends BukkitCommand {
                         String playerName = args[1];
                         int amount = Integer.parseInt(args[2]);
                         String notes = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
-                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, notes);
+                        TheCaoFast.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, notes);
                         return true;
                     } else {
                         sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
@@ -209,7 +209,7 @@ public class Commands extends BukkitCommand {
     private boolean reload(CommandSender sender, int arg, Messages msg) {
         if (sender.hasPermission("napthe.admin.reload")) {
             if (arg == 1) {
-                TheSieuToc.getInstance().reload((short) 0);
+                TheCaoFast.getInstance().reload((short) 0);
                 sender.sendMessage(msg.reloaded);
                 return true;
             } else {
@@ -243,7 +243,7 @@ public class Commands extends BukkitCommand {
         if (hasAPIInfo) {
             if (isPlayer) {
                 final Player player = (Player) sender;
-                for (String card : TheSieuToc.getInstance().getSettings().cardEnable) {
+                for (String card : TheCaoFast.getInstance().getSettings().cardEnable) {
                     String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
                     String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
                     BaseComponent[] message = new ComponentBuilder(text)
@@ -264,7 +264,7 @@ public class Commands extends BukkitCommand {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Messages msg = TheSieuToc.getInstance().getMessages();
+                Messages msg = TheCaoFast.getInstance().getMessages();
                 try {
                     switch (args.length) {
                         case 1:
@@ -291,15 +291,15 @@ public class Commands extends BukkitCommand {
                             sender.sendMessage(msg.tooManyArgs);
                     }
                 } catch (Exception e) {
-                    TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
+                    TheCaoFast.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
                 }
             }
-        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        }.runTaskAsynchronously(TheCaoFast.getInstance());
         return true;
     }
 
     private void chooseAmount(Player player, String type, Ui ui){
-        for(Integer amount : TheSieuToc.getInstance().getSettings().amountList){
+        for (Integer amount : TheCaoFast.getInstance().getSettings().amountList) {
             String text = ui.cardAmountText.replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
@@ -328,11 +328,11 @@ public class Commands extends BukkitCommand {
     }
 
     static boolean isValidCard(String type){
-        return TheSieuToc.getInstance().getSettings().cardEnable.stream().anyMatch(type::equalsIgnoreCase);
+        return TheCaoFast.getInstance().getSettings().cardEnable.stream().anyMatch(type::equalsIgnoreCase);
     }
 
     static boolean isValidAmount(int a){
-        for (int amount : TheSieuToc.getInstance().getSettings().amountList) {
+        for (int amount : TheCaoFast.getInstance().getSettings().amountList) {
             if (amount == a) {
                 return true;
             }

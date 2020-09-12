@@ -1,6 +1,6 @@
-package me.lxc.thesieutoc.internal;
+package me.lxc.thecaofast.internal;
 
-import me.lxc.thesieutoc.handlers.InputCardHandler;
+import me.lxc.thecaofast.handlers.InputCardHandler;
 import org.json.simple.JSONObject;
 
 import java.text.ParseException;

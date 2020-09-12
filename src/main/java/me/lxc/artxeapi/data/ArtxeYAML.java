@@ -1,7 +1,7 @@
 package me.lxc.artxeapi.data;
 
 import me.lxc.artxeapi.utils.ArtxeDebug;
-import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thecaofast.TheCaoFast;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -24,7 +24,7 @@ public class ArtxeYAML {
     private File file;
     private FileConfiguration config;
     private String internalPath;
-    private static final ArtxeDebug DEBUG = new ArtxeDebug(TheSieuToc.getInstance(), true);
+    private static final ArtxeDebug DEBUG = new ArtxeDebug(TheCaoFast.getInstance(), true);
     public ArtxeYAML(Plugin plugin, String filepath, String filename, String internalPath) {
         this.plugin = plugin;
         this.file = new File(filepath, filename);

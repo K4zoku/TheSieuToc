@@ -1,11 +1,11 @@
-package me.lxc.thesieutoc.tasks;
+package me.lxc.thecaofast.tasks;
 
 import com.google.gson.JsonObject;
 import me.lxc.artxeapi.utils.ArtxeCommands;
-import me.lxc.thesieutoc.TheSieuToc;
-import me.lxc.thesieutoc.internal.Messages;
-import net.thesieutoc.TheSieuTocAPI;
-import net.thesieutoc.data.CardInfo;
+import me.lxc.thecaofast.TheCaoFast;
+import me.lxc.thecaofast.internal.Messages;
+import net.thecaofast.TheCaoFastAPI;
+import net.thecaofast.data.CardInfo;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CardCheckTask extends BukkitRunnable {
 
-    public CardCheckTask(TheSieuToc instance) {
+    public CardCheckTask(TheCaoFast instance) {
         this.runTaskTimer(instance, 0L, instance.getSettings().cardCheckPeriod);
     }
 
@@ -29,57 +29,58 @@ public class CardCheckTask extends BukkitRunnable {
         new BukkitRunnable(){
             @Override
             public void run() {
-                if (TheSieuToc.getInstance().queue.size() == 0) return;
-                TheSieuToc.pluginDebug.debug("Checking in progress...");
-                for(Map.Entry<Player, List<CardInfo>> playerCards : TheSieuToc.getInstance().queue.entrySet()){
+                if (TheCaoFast.getInstance().queue.size() == 0) return;
+                TheCaoFast.pluginDebug.debug("Checking in progress...");
+                for (Map.Entry<Player, List<CardInfo>> playerCards : TheCaoFast.getInstance().queue.entrySet()) {
                     Player player = playerCards.getKey();
                     List<CardInfo> cards = playerCards.getValue();
                     List<CardInfo> removeQueue = new ArrayList<>();
-                    for(CardInfo card : cards){
+                    for (CardInfo card : cards) {
                         checkOne(player, card, removeQueue);
                     }
                     cards.removeAll(removeQueue);
-                    TheSieuToc.getInstance().queue.replace(player, cards);
+                    TheCaoFast.getInstance().queue.replace(player, cards);
                 }
             }
-        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        }.runTaskAsynchronously(TheCaoFast.getInstance());
     }
 
     public static boolean checkOne(final Player player, final CardInfo card, List<CardInfo> removeQueue) {
-        final Messages messages = TheSieuToc.getInstance().getMessages();
+        final Messages messages = TheCaoFast.getInstance().getMessages();
         String notes;
-        JsonObject checkCard = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
-        TheSieuToc.pluginDebug.debug("Data sent: " + card.toString());
-        TheSieuToc.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
+        JsonObject checkCard = TheCaoFastAPI.checkCard(TheCaoFast.getInstance().getSettings().iTheCaoFastKey, TheCaoFast.getInstance().getSettings().iTheCaoFastSecret, card.transactionID);
+        TheCaoFast.pluginDebug.debug("Data sent: " + card.toString());
+        TheCaoFast.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
         assert checkCard != null;
-        String status = checkCard.get("status").getAsString();
+        JsonObject result = checkCard.get("result").getAsJsonObject();
+        int status = result.get("status").getAsInt();
         boolean isOnline = player.isOnline();
         switch (status) {
-            case "00":
+            case 200:
                 notes = messages.success.replaceAll("(?ium)[{]Amount[}]", String.valueOf(card.amount));
                 if (isOnline) player.sendMessage(notes);
                 notes = ChatColor.stripColor(notes);
                 successAction(player, card.amount);
-                TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, true, notes);
+                TheCaoFast.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, true, notes);
                 if (removeQueue != null) removeQueue.add(card);
                 return true;
-            case "-9":
+            case 201:
                 if (isOnline) player.sendMessage(messages.awaitingApproval);
                 return true;
             default:
                 if (isOnline) {
                     player.sendMessage(messages.fail);
-                    player.sendMessage(checkCard.get("msg").getAsString());
+                    player.sendMessage(result.get("msg").getAsString());
                 }
-                notes = checkCard.get("msg").getAsString();
+                notes = result.get("msg").getAsString();
                 if (removeQueue != null) removeQueue.add(card);
-                TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
+                TheCaoFast.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
                 return false;
         }
     }
 
     private static void successAction(Player player, int amount) {
-        List<String> commands = TheSieuToc.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
+        List<String> commands = TheCaoFast.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
         for (String command : commands) {
             ArtxeCommands.dispatchCommand(player, command);
         }

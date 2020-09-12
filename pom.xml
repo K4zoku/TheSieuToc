@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.lxc</groupId>
-    <artifactId>thesieutoc</artifactId>
-    <version>2.0.5</version>
+    <artifactId>thecaofast</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>TheSieuToc</name>
+    <name>TheCaoFast</name>
 
-    <description>Plugin nạp thẻ thông qua API của thesieutoc.net</description>
+    <description>Plugin nạp thẻ thông qua APIV4 của thecaofast.net</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
