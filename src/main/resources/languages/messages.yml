@@ -27,3 +27,5 @@ Top-Msg: '&aCó &f&l{Number_Of_Donors} &angười đã nạp và tổng cộng �
 Sau đây là top &f{Top} &angười nạp thẻ:'
 Your-Top: '&aTop của bạn là &a&l#{Player_Rank} &avới tổng số tiền là &6&l{Player_Total}₫'
 Top-Format: '&a&l#{Player_Rank}&f&l: &b&l{Player} &7&l- &6&l{Player_Total}₫'
+Cache-Cleared: '&aĐã xóa cache'
+Given: '&aĐã cho {Player} {Amount}₫ tiền ảo'

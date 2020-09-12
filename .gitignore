@@ -12,6 +12,13 @@
 
 target/
 
+# IntelliJ IDEA Project Settings
+.idea/
+*.iml
+
+# IntelliJ IDEA Project Artifact Output
+out/
+
 # Package Files #
 *.jar
 *.war

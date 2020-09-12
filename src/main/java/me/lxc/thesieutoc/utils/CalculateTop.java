@@ -1,6 +1,8 @@
 package me.lxc.thesieutoc.utils;
 
+import javafx.util.Pair;
 import me.lxc.thesieutoc.TheSieuToc;
+import me.lxc.thesieutoc.internal.DornorLogElement;
 import me.lxc.thesieutoc.internal.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -18,42 +20,70 @@ public class CalculateTop {
     private static long numberOfDonors;
     private static long serverTotal = 0;
 
-    private static List<String> getLogContent() throws Exception {
-        File log = TheSieuToc.getInstance().getDonorLog().logFile;
-        Scanner s = new Scanner(log);
-        List<String> logContent = new ArrayList<>();
-        while (s.hasNextLine()) {
-            logContent.add(s.nextLine());
+    private static Pair<Date, List<DornorLogElement>> logCache;
+
+    public static void clearCache() {
+        logCache = null;
+    }
+
+    public static void appendToCache(DornorLogElement dornor) {
+        List<DornorLogElement> l = new ArrayList<>();
+        if (logCache != null) {
+            l = logCache.getValue();
+            l.add(dornor);
+            logCache = new Pair<>(logCache.getKey(), l);
+        } else {
+            l.add(dornor);
+            logCache = new Pair<>(new Date(), l);
         }
-        s.close();
+    }
+
+    private static List<DornorLogElement> getLogContent() throws Exception {
+        List<DornorLogElement> logContent = new ArrayList<>();
+        if (logCache == null || logCache.getKey().before(new Date())) {
+            TheSieuToc.pluginDebug.debug("Loading log from file...");
+            File log = TheSieuToc.getInstance().getDonorLog().logFile;
+            Scanner s = new Scanner(log);
+            while (s.hasNextLine()) {
+                logContent.add(DornorLogElement.getFromLine(s.nextLine()));
+            }
+            s.close();
+            Date expire = new Date(System.currentTimeMillis() + TheSieuToc.getInstance().getSettings().cacheTTL);
+            logCache = new Pair<>(expire, logContent);
+        } else {
+            long start = System.currentTimeMillis();
+            long end = logCache.getKey().getTime();
+            long ttl = (end - start) / 1000;
+
+            TheSieuToc.pluginDebug.debug("Loading log from cache... (TTL: " + ttl + ")");
+            logContent = logCache.getValue();
+        }
         return logContent;
     }
+
     public static Map<String, Integer> execute(String type) throws Exception {
-        List<String> log = getLogContent();
-        List<String> matchDate = new ArrayList<>();
+        List<DornorLogElement> log = getLogContent();
+        List<DornorLogElement> matchDate = new ArrayList<>();
         Map<String, Integer> top;
         if (type == null || (type.equalsIgnoreCase(TOTAL) || type.isEmpty())) {
             top = getSuccess(log);
         } else {
-            String format;
+            SimpleDateFormat dateFormat;
             switch (type.toLowerCase()) {
                 case "month":
-                    format = MONTH;
+                    dateFormat = new SimpleDateFormat(MONTH);
                     break;
                 case "year":
-                    format = YEAR;
+                    dateFormat = new SimpleDateFormat(YEAR);
                     break;
                 case "day":
                 default:
-                    format = DAY;
+                    dateFormat = new SimpleDateFormat(DAY);
                     break;
             }
-            SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-            Date date = new Date();
-            for (String line : log) {
-                String[] ss = line.split("[|]");
-                if (ss[0].trim().contains(dateFormat.format(date))) {
-                    matchDate.add(line);
+            for (DornorLogElement dornor : log) {
+                if (dateFormat.format(dornor.getDate()).contains(dateFormat.format(new Date()))) {
+                    matchDate.add(dornor);
                 }
             }
             top = getSuccess(matchDate);
@@ -62,15 +92,15 @@ public class CalculateTop {
         numberOfDonors = top.size();
         return top;
     }
-    private static Map<String, Integer> getSuccess(List<String> inputarray) {
+
+    private static Map<String, Integer> getSuccess(List<DornorLogElement> inputarray) {
         serverTotal = 0;
         Map<String, Integer> s = new HashMap<>();
-        for (String line : inputarray) {
-            String[] data = line.split("[|]",8);
-            boolean success = Boolean.parseBoolean(data[6].replaceFirst(" SUCCESS ","").trim());
-            if (success) {
-                String name = data[1].replaceFirst(" NAME ","").trim();
-                int amount = Integer.parseInt(data[5].replaceFirst(" AMOUNT ","").trim());
+        for (DornorLogElement dornor : inputarray) {
+            if (dornor.isSuccess()) {
+                String name = dornor.getPlayerName();
+                int amount = dornor.getCardInfo().amount;
+
                 if (s.containsKey(name))
                     s.replace(name, s.get(name) + amount);
                 else s.put(name, amount);
@@ -94,7 +124,6 @@ public class CalculateTop {
     public static void printTop(CommandSender sender, Map<String, Integer> top, int limit) {
         final Messages msg = TheSieuToc.getInstance().getMessages();
         sender.sendMessage(msg.calculating);
-        int i = 0;
         String playerName = sender.getName();
         if (top.isEmpty()) {
             sender.sendMessage(msg.emptyTop);
@@ -105,6 +134,7 @@ public class CalculateTop {
                     replaceAll("(?ium)[{]Top[}]", String.valueOf(Math.min(top.size(), limit)))
             );
             String yourTop = msg.yourTop;
+            int i = 0;
             for (Map.Entry<String, Integer> entry : top.entrySet()) {
                 i++;
                 String name = entry.getKey().trim();

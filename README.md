@@ -16,7 +16,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.4
+Config-Version: 2.0.5
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -24,12 +24,17 @@ Config-Version: 2.0.4
 #       / / / __ \/ _ \    \__ \/ / _ \/ / / /    / / / __ \/ ___/     #
 #      / / / / / /  __/   ___/ / /  __/ /_/ /    / / / /_/ / /__       #
 #     /_/ /_/ /_/\___/   /____/_/\___/\__._/    /_/  \____/\___/       #
-#                  | Version: 2.0.4 | Author: LXC |                    #
+#                  | Version: 2.0.5 | Author: LXC |                    #
 #               | Copyright (c) 2018-2020 TheSieuToc |                 #
 ########################################################################
 
 # /!\ Đừng bật nếu bạn không phải là nhà phát triển
 Debug: false
+
+# [?] Cài đặt cache
+Cache:
+  # [?] Thời gian tồn tại của cache, set càng cao thì càng mượt và ngược lại :))
+  TTL: 5m
 
 # /!\ Bắt buộc phải điền, không điền thì chạy bằng niềm tin à? (╯°□°）╯︵ ┻━┻
 # [?] Bạn có thể lấy API key và API Secret tại https://thesieutoc.net/tich-hop-nap-the.html
@@ -93,6 +98,11 @@ Card-Reward:
     * Optimize
 * 2.0.4
     * Fixed logs/top bugs
+* 2.0.5
+    * Optimize code
+    * Add command `napthe.admin.give | /donate give {player} {amount} [{note}..]`
+    * Add in-memory log cache
+    * Add command `napthe.admin.cache.clear | /donate clear-cache`
     
 ## Contact me
 

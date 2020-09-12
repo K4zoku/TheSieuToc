@@ -8,6 +8,7 @@ import me.lxc.thesieutoc.internal.Ui;
 import me.lxc.thesieutoc.tasks.CardCheckTask;
 import net.thesieutoc.TheSieuTocAPI;
 import net.thesieutoc.data.CardInfo;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,11 +24,11 @@ public class PlayerChat implements Listener {
 
     @EventHandler
     public void event(AsyncPlayerChatEvent e) {
+        final String text = ChatColor.stripColor(e.getMessage());
         final Settings settings = TheSieuToc.getInstance().getSettings();
         final Messages msg = TheSieuToc.getInstance().getMessages();
         final Ui ui = TheSieuToc.getInstance().getUi();
         final Player player = e.getPlayer();
-        final String text = e.getMessage();
 
         if (stepOne(player) && !stepTwo(player)) {
             e.setCancelled(true);
@@ -51,6 +52,7 @@ public class PlayerChat implements Listener {
                 player.sendMessage(msg.pin.replaceAll("(?ium)[{]Pin[}]", text));
                 JsonObject sendCard = TheSieuTocAPI.sendCard(settings.iTheSieuTocKey, settings.iTheSieuTocSecret, info.type, info.amount, info.serial, info.pin);
                 TheSieuToc.pluginDebug.debug("Response: " + (sendCard != null ? sendCard.toString() : "NULL"));
+                assert sendCard != null;
                 if (!sendCard.get("status").getAsString().equals("00")) {
                     player.sendMessage(msg.fail);
                     player.sendMessage(sendCard.get("msg").getAsString());
@@ -79,8 +81,6 @@ public class PlayerChat implements Listener {
                 purgePlayer(player);
                 player.sendMessage(msg.cancelled);
             }
-            return;
         }
-
     }
 }

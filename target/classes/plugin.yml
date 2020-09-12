@@ -1,7 +1,0 @@
-name: TheSieuToc
-version: 2.0.3
-main: me.lxc.thesieutoc.TheSieuToc
-prefix: TheSieuToc
-authors: [LXC]
-description: Plugin nạp thẻ thông qua API của thesieutoc.net
-website: https://thesieutoc.net

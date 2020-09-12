@@ -16,6 +16,7 @@ public class Settings extends IConfiguration {
     public String iTheSieuTocSecret;
 
     public long cardCheckPeriod;
+    public long cacheTTL;
 
     public List<String> cardEnable;
 
@@ -30,7 +31,8 @@ public class Settings extends IConfiguration {
         debug = yaml.getConfig().getBoolean("Debug", false);
         iTheSieuTocKey = yaml.getConfig().get("TheSieuToc.API-Key").toString();
         iTheSieuTocSecret = yaml.getConfig().get("TheSieuToc.API-Secret").toString();
-        cardCheckPeriod = ArtxeTime.toTick(yaml.getConfig().get("Card-Check-Period","5m"));
+        cardCheckPeriod = ArtxeTime.toTick(yaml.getConfig().get("Card-Check-Period", "5m"));
+        cacheTTL = ArtxeTime.toMilis(yaml.getConfig().get("Cache.TTL", "5m"));
         cardEnable = yaml.getConfig().getStringList("Card-Enabled");
         if (cardEnable == null || cardEnable.isEmpty()) cardEnable = Arrays.asList("Viettel", "Vinaphone", "Mobifone", "Vietnamobile", "Vcoin", "Zing", "Gate");
         loadAmountList();

@@ -18,14 +18,25 @@ public class ArtxeTime {
                 case "ms": return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 / (0xa * 0xa * 0xa));
                 case "s" : return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14);
                 case "m" : return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 * 0x3c);
-                case "h" : return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 * 0x3c * 0x3c);
-                case "d" : return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 * 0x3c * 0x3c * 0x18);
+                case "h":
+                    return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 * 0x3c * 0x3c);
+                case "d":
+                    return Math.round(NumberConversions.toDouble(text.replaceAll(TIME_UNIT_MATCH, "$1")) * 0x14 * 0x3c * 0x3c * 0x18);
                 case "":
                 case "tick":
-                default: return Math.round(NumberConversions.toDouble(text) * 0x1);
+                default:
+                    return Math.round(NumberConversions.toDouble(text) * 0x1);
             }
         }
         return 0x0L;
+    }
+
+    public static long toSeconds(Object object) {
+        return toTick(object) / 0x14;
+    }
+
+    public static long toMilis(Object object) {
+        return toSeconds(object) * 1000;
     }
 
     public static String getCurrentYear() {

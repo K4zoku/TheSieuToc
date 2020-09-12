@@ -29,6 +29,7 @@ public class CardCheckTask extends BukkitRunnable {
         new BukkitRunnable(){
             @Override
             public void run() {
+                if (TheSieuToc.getInstance().queue.size() == 0) return;
                 TheSieuToc.pluginDebug.debug("Checking in progress...");
                 for(Map.Entry<Player, List<CardInfo>> playerCards : TheSieuToc.getInstance().queue.entrySet()){
                     Player player = playerCards.getKey();
@@ -48,30 +49,33 @@ public class CardCheckTask extends BukkitRunnable {
         final Messages messages = TheSieuToc.getInstance().getMessages();
         String notes;
         JsonObject checkCard = TheSieuTocAPI.checkCard(TheSieuToc.getInstance().getSettings().iTheSieuTocKey, TheSieuToc.getInstance().getSettings().iTheSieuTocSecret, card.transactionID);
+        TheSieuToc.pluginDebug.debug("Data sent: " + card.toString());
         TheSieuToc.pluginDebug.debug("Response: " + (checkCard != null ? checkCard.toString() : "NULL"));
+        assert checkCard != null;
         String status = checkCard.get("status").getAsString();
         boolean isOnline = player.isOnline();
         switch (status) {
             case "00":
-                if(isOnline) player.sendMessage(messages.success.replaceAll("(?ium)[{]Amount[}]", String.valueOf(card.amount)));
+                notes = messages.success.replaceAll("(?ium)[{]Amount[}]", String.valueOf(card.amount));
+                if (isOnline) player.sendMessage(notes);
+                notes = ChatColor.stripColor(notes);
                 successAction(player, card.amount);
-                notes = ChatColor.stripColor(messages.success);
                 TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, true, notes);
                 if (removeQueue != null) removeQueue.add(card);
-                break;
+                return true;
             case "-9":
-                if(isOnline) player.sendMessage(messages.awaitingApproval);
+                if (isOnline) player.sendMessage(messages.awaitingApproval);
                 return true;
             default:
-                if(isOnline) {
+                if (isOnline) {
                     player.sendMessage(messages.fail);
                     player.sendMessage(checkCard.get("msg").getAsString());
                 }
                 notes = checkCard.get("msg").getAsString();
                 if (removeQueue != null) removeQueue.add(card);
                 TheSieuToc.getInstance().getDonorLog().writeLog(player, card.serial, card.pin, card.type, card.amount, false, notes);
+                return false;
         }
-        return false;
     }
 
     private static void successAction(Player player, int amount) {

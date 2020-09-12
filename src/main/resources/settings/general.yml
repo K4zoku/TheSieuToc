@@ -14,6 +14,11 @@ Config-Version: ${project.version}
 # /!\ Đừng bật nếu bạn không phải là nhà phát triển
 Debug: false
 
+# [?] Cài đặt cache
+Cache:
+  # [?] Thời gian tồn tại của cache, set càng cao thì càng mượt và ngược lại :))
+  TTL: 5m
+
 # /!\ Bắt buộc phải điền, không điền thì chạy bằng niềm tin à? (╯°□°）╯︵ ┻━┻
 # [?] Bạn có thể lấy API key và API Secret tại https://thesieutoc.net/tich-hop-nap-the.html
 TheSieuToc:

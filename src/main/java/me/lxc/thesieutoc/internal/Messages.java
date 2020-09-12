@@ -28,6 +28,8 @@ public class Messages extends IConfiguration {
     public String topMessage;
     public String yourTop;
     public String topFormat;
+    public String cacheCleared;
+    public String given;
 
 
     public Messages(ArtxeYAML messagesYml) {
@@ -62,6 +64,8 @@ public class Messages extends IConfiguration {
         topMessage = getString("Top-Msg", "§aCó §f§l{Number_Of_Donors} §angười đã nạp và tổng cộng được §6§l{Server_Total}₫§a. Sau đây là top §f{Top} §angười nạp thẻ:");
         yourTop = getString("Your-Top", "§aTop của bạn là §a§l#{Player_Rank} §avới tổng số tiền là §6§l{Player_Total}₫");
         topFormat = getString("Top-Format", "§a§l#{Player_Rank}§f§l: §b§l{Player} §7§l- §6§l{Player_Total}₫");
+        cacheCleared = getString("Cache-Cleared", "§aĐã xóa cache");
+        given = getString("Given", "§aĐã cho {Player} {Amount}₫ tiền ảo");
     }
 
 }

@@ -17,6 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Stream;
@@ -35,19 +36,23 @@ public class Commands extends BukkitCommand {
         final Player player = isPlayer ? (Player) sender : null;
         final boolean hasAPIInfo = TheSieuToc.getInstance().hasAPIInfo;
 
-        switch (args.length){
+        switch (args.length) {
             case 0:
                 chooseCard(sender, isPlayer, hasAPIInfo, ui, msg);
                 return true;
             case 1:
-                switch (args[0].toLowerCase()){
+                switch (args[0].toLowerCase()) {
+                    case "give":
+                        return give(sender, args, msg);
+                    case "clear-cache":
+                        return clearCache(sender, msg);
                     case "reload":
                         return reload(sender, args.length, msg);
                     case "choose":
                         chooseCard(sender, isPlayer, hasAPIInfo, ui, msg);
                         return true;
                     case "check":
-                        if(hasAPIInfo) {
+                        if (hasAPIInfo) {
                             return check(sender, args.length, msg);
                         } else {
                             sender.sendMessage(msg.missingApiInfo);
@@ -60,9 +65,11 @@ public class Commands extends BukkitCommand {
                         return false;
                 }
             case 2:
-                switch (args[0].toLowerCase()){
+                switch (args[0].toLowerCase()) {
+                    case "give":
+                        return give(sender, args, msg);
                     case "choose":
-                        if(hasAPIInfo) {
+                        if (hasAPIInfo) {
                             if (isPlayer) {
                                 if (isValidCard(args[1])) {
                                     String type = args[1];
@@ -96,10 +103,12 @@ public class Commands extends BukkitCommand {
                         return false;
                 }
             case 3:
-                switch (args[0].toLowerCase()){
+                switch (args[0].toLowerCase()) {
+                    case "give":
+                        return give(sender, args, msg);
                     case "choose":
-                        if(hasAPIInfo) {
-                            if(isPlayer) {
+                        if (hasAPIInfo) {
+                            if (isPlayer) {
                                 if (isValidCard(args[1])) {
                                     if (ArtxeNumber.isInteger(args[2])) {
                                         if (isValidAmount(Integer.parseInt(args[2]))) {
@@ -140,14 +149,66 @@ public class Commands extends BukkitCommand {
                         return false;
                 }
             default:
-                sender.sendMessage(msg.tooManyArgs);
-                return false;
+                switch (args[0].toLowerCase()) {
+                    case "give":
+                        return give(sender, args, msg);
+                    default:
+                        sender.sendMessage(msg.tooManyArgs);
+                        return false;
+                }
         }
     }
 
-    private boolean reload(CommandSender sender, int arg, Messages msg){
-        if(sender.hasPermission("napthe.admin.reload")){
-            if(arg == 1){
+    private boolean give(CommandSender sender, String[] args, Messages msg) {
+        if (sender.hasPermission("napthe.admin.give")) {
+            switch (args.length) {
+                case 1:
+                case 2:
+                    sender.sendMessage(msg.tooFewArgs);
+                    return false;
+                case 3:
+                    if (ArtxeNumber.isInteger(args[2])) {
+                        String playerName = args[1];
+                        int amount = Integer.parseInt(args[2]);
+                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, "FROM GIVE COMMAND");
+                        sender.sendMessage(msg.given.replaceAll("(?ium)[{]Player[}]", playerName).replaceAll("(?ium)[{]Amount[}]", args[2]));
+                    } else {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
+                        return false;
+                    }
+                    return true;
+                default:
+                    if (ArtxeNumber.isInteger(args[2])) {
+                        String playerName = args[1];
+                        int amount = Integer.parseInt(args[2]);
+                        String notes = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
+                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, notes);
+                        return true;
+                    } else {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
+                        return false;
+                    }
+            }
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private boolean clearCache(CommandSender sender, Messages msg) {
+        if (sender.hasPermission("napthe.admin.cache.clear")) {
+            CalculateTop.clearCache();
+            sender.sendMessage(msg.cacheCleared);
+            return true;
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private boolean reload(CommandSender sender, int arg, Messages msg) {
+        if (sender.hasPermission("napthe.admin.reload")) {
+            if (arg == 1) {
                 TheSieuToc.getInstance().reload((short) 0);
                 sender.sendMessage(msg.reloaded);
                 return true;

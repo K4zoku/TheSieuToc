@@ -1,0 +1,4 @@
+name: TST-PAPIExpansion
+version: ${project.version}
+main: me.lxc.papi.expansion.thesieutoc.TSTPAPIExpansion
+api-version: 1.16
