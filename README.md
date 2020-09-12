@@ -106,7 +106,7 @@ Card-Reward:
     
 ## Contact me
 
-Takahata Shun – [me.takahatashun][facebook] – [@ztglxc][twitter] – LXC#2324
+LXC – [me.takahatashun][facebook] – [@ztglxc][twitter] – LXC#1848
 
 <!-- Markdown link & img dfn's -->
 [releases]: https://github.com/takahatashun/TheSieuToc/releases/latest
