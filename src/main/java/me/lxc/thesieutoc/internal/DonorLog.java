@@ -4,10 +4,11 @@ import me.lxc.thesieutoc.TheSieuToc;
 import me.lxc.thesieutoc.utils.CalculateTop;
 import org.bukkit.entity.Player;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,10 +53,10 @@ public class DonorLog {
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
         TheSieuToc.pluginDebug.debug("| Dornor Log [> " + content);
-        try (FileWriter fw = new FileWriter(logFile, true); BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.append(content.toString());
-            bw.newLine();
-            bw.flush();
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(logFile, true), StandardCharsets.UTF_8)) {
+            writer.append(content.toString());
+            writer.append('\n');
+            writer.flush();
         } catch (IOException e) {
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }

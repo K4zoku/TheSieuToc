@@ -1,13 +1,16 @@
 package me.lxc.thesieutoc.tasks;
 
 import com.google.gson.JsonObject;
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.lxc.artxeapi.utils.ArtxeCommands;
 import me.lxc.thesieutoc.TheSieuToc;
 import me.lxc.thesieutoc.internal.Messages;
 import net.thesieutoc.TheSieuTocAPI;
 import net.thesieutoc.data.CardInfo;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -80,7 +83,13 @@ public class CardCheckTask extends BukkitRunnable {
 
     private static void successAction(Player player, int amount) {
         List<String> commands = TheSieuToc.getInstance().getSettings().yaml().getConfig().getStringList("Card-Reward." + amount);
+        Plugin papi = Bukkit.getPluginManager().getPlugin("PlaceHolderAPI");
+        boolean papiEnabled = false;
+        if (papi != null) {
+            papiEnabled = PlaceholderAPI.isRegistered("TST");
+        }
         for (String command : commands) {
+            command = papiEnabled ? PlaceholderAPI.setPlaceholders(player, command) : command;
             ArtxeCommands.dispatchCommand(player, command);
         }
     }

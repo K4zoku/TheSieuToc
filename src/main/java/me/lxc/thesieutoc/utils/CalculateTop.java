@@ -63,11 +63,11 @@ public class CalculateTop {
 
     public static Map<String, Integer> execute(String type) throws Exception {
         List<DornorLogElement> log = getLogContent();
-        List<DornorLogElement> matchDate = new ArrayList<>();
         Map<String, Integer> top;
         if (type == null || (type.equalsIgnoreCase(TOTAL) || type.isEmpty())) {
             top = getSuccess(log);
         } else {
+            List<DornorLogElement> matchDate = new ArrayList<>();
             SimpleDateFormat dateFormat;
             switch (type.toLowerCase()) {
                 case "month":
@@ -81,8 +81,9 @@ public class CalculateTop {
                     dateFormat = new SimpleDateFormat(DAY);
                     break;
             }
+            String now = dateFormat.format(new Date());
             for (DornorLogElement dornor : log) {
-                if (dateFormat.format(dornor.getDate()).contains(dateFormat.format(new Date()))) {
+                if (dateFormat.format(dornor.getDate()).contains(now)) {
                     matchDate.add(dornor);
                 }
             }

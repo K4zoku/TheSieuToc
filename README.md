@@ -9,6 +9,10 @@
 
 [![Header Image](header.png)](header.png)
 
+## Build
+* Main plugin: `$ mvn clean package install`
+* PAPI Expansion: `$ mvn clean package`
+
 ## Installation
 Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plugins`
 
@@ -16,7 +20,7 @@ Download this plugin in [releases][releases] page and put it in `SERVER_ROOT/plu
 [settings/general.yml][settings-general]
 ```yaml
 # /!\ Không thay đổi giá trị này
-Config-Version: 2.0.5
+Config-Version: 2.0.6
 
 ########################################################################
 #       ________            _____ _               ______               #
@@ -103,6 +107,9 @@ Card-Reward:
     * Add command `napthe.admin.give | /donate give {player} {amount} [{note}..]`
     * Add in-memory log cache
     * Add command `napthe.admin.cache.clear | /donate clear-cache`
+* 2.0.6
+    * Support PAPI Placeholders in Rewards Commands   
+    * PAPIExpansion release
     
 ## Contact me
 
