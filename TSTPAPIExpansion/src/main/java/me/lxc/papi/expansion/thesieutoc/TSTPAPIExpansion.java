@@ -43,7 +43,7 @@ public final class TSTPAPIExpansion extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player p, String params) {
         String[] paramsSplitted = params.toLowerCase().split("[_]");
         String label = paramsSplitted[0];
-        String[] args = Arrays.copyOfRange(paramsSplitted, 1, paramsSplitted.length);
+        String[] args = paramsSplitted.length > 1 ? Arrays.copyOfRange(paramsSplitted, 1, paramsSplitted.length) : new String[]{};
         String result = "";
         String name = p.getName();
         switch (label) {
