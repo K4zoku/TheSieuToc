@@ -9,23 +9,123 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.stream.Stream;
 
 public class Commands extends BukkitCommand {
 
     public Commands(String name, String description, String usageMessage, List<String> aliases) {
         super(name, description, usageMessage, aliases);
+    }
+
+    private static final List<String> TT = Arrays.asList("TOTAL", "DAY", "MONTH", "YEAR");
+
+    private boolean give(CommandSender sender, String[] args, Messages msg) {
+        if (sender.hasPermission("napthe.admin.give")) {
+            switch (args.length) {
+                case 1:
+                case 2:
+                    sender.sendMessage(msg.tooFewArgs);
+                    return false;
+                case 3:
+                    if (ArtxeNumber.isInteger(args[2])) {
+                        String playerName = args[1];
+                        int amount = Integer.parseInt(args[2]);
+                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, "FROM GIVE COMMAND");
+                        sender.sendMessage(msg.given.replaceAll("(?ium)[{]Player[}]", playerName).replaceAll("(?ium)[{]Amount[}]", args[2]));
+                    } else {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
+                        return false;
+                    }
+                    return true;
+                default:
+                    if (ArtxeNumber.isInteger(args[2])) {
+                        String playerName = args[1];
+                        int amount = Integer.parseInt(args[2]);
+                        String notes = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
+                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, notes);
+                        return true;
+                    } else {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
+                        return false;
+                    }
+            }
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private boolean clearCache(CommandSender sender, Messages msg) {
+        if (sender.hasPermission("napthe.admin.cache.clear")) {
+            CalculateTop.clearCache();
+            sender.sendMessage(msg.cacheCleared);
+            return true;
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private boolean reload(CommandSender sender, int arg, Messages msg) {
+        if (sender.hasPermission("napthe.admin.reload")) {
+            if (arg == 1) {
+                TheSieuToc.getInstance().reload((short) 0);
+                sender.sendMessage(msg.reloaded);
+                return true;
+            } else {
+                sender.sendMessage(msg.tooManyArgs);
+                return false;
+            }
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private boolean check(CommandSender sender, int arg, Messages msg) {
+        if (sender.hasPermission("napthe.admin.check")) {
+            if (arg == 1) {
+                CardCheckTask.checkAll();
+                sender.sendMessage(msg.checked);
+                return true;
+            } else {
+                sender.sendMessage(msg.tooManyArgs);
+                return false;
+            }
+        } else {
+            sender.sendMessage(msg.noPermission);
+            return false;
+        }
+    }
+
+    private void chooseCard(CommandSender sender, boolean isPlayer, boolean hasAPIInfo, Ui ui, Messages msg) {
+        if (hasAPIInfo) {
+            if (isPlayer) {
+                final Player player = (Player) sender;
+                for (String card : TheSieuToc.getInstance().getSettings().cardEnable) {
+                    String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
+                    String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
+                    BaseComponent[] message = new ComponentBuilder(text)
+                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
+                        .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0}", card)))
+                        .create();
+                    player.spigot().sendMessage(message);
+                }
+            } else {
+                sender.sendMessage(msg.onlyPlayer);
+            }
+        } else {
+            sender.sendMessage(msg.missingApiInfo);
+        }
     }
 
     @Override
@@ -107,32 +207,24 @@ public class Commands extends BukkitCommand {
                     case "give":
                         return give(sender, args, msg);
                     case "choose":
-                        if (hasAPIInfo) {
-                            if (isPlayer) {
-                                if (isValidCard(args[1])) {
-                                    if (ArtxeNumber.isInteger(args[2])) {
-                                        if (isValidAmount(Integer.parseInt(args[2]))) {
-                                            InputCardHandler.triggerStepOne(player, args[1], Integer.parseInt(args[2]));
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    } else {
-                                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
-                                        return false;
-                                    }
-                                } else {
-                                    sender.sendMessage(msg.invalidCardType);
-                                    return false;
-                                }
-                            } else {
-                                sender.sendMessage(msg.onlyPlayer);
-                                return false;
-                            }
-                        } else {
+                        if (!hasAPIInfo) {
                             sender.sendMessage(msg.missingApiInfo);
                             return false;
                         }
+                        if (!isPlayer) {
+                            sender.sendMessage(msg.onlyPlayer);
+                            return false;
+                        }
+                        if (!isValidCard(args[1])) {
+                            sender.sendMessage(msg.invalidCardType);
+                            return false;
+                        }
+                        if (!ArtxeNumber.isInteger(args[2])) {
+                            sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
+                            return false;
+                        }
+                        InputCardHandler.triggerStepOne(player, args[1], Integer.parseInt(args[2]));
+                        return true;
                     case "reload":
                         return reload(sender, args.length, msg);
                     case "check":
@@ -159,142 +251,36 @@ public class Commands extends BukkitCommand {
         }
     }
 
-    private boolean give(CommandSender sender, String[] args, Messages msg) {
-        if (sender.hasPermission("napthe.admin.give")) {
+    private boolean top(CommandSender sender, String[] args) {
+        Messages msg = TheSieuToc.getInstance().getMessages();
+        Bukkit.getScheduler().runTaskAsynchronously(TheSieuToc.getInstance(), () -> {
             switch (args.length) {
                 case 1:
+                    CalculateTop.printTop(sender, CalculateTop.execute("total"), 10);
+                    break;
                 case 2:
-                    sender.sendMessage(msg.tooFewArgs);
-                    return false;
+                    if (ArtxeNumber.isInteger(args[1])) {
+                        CalculateTop.printTop(sender, CalculateTop.execute("total"), Integer.parseInt(args[1]));
+                    } else {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                    }
+                    break;
                 case 3:
-                    if (ArtxeNumber.isInteger(args[2])) {
-                        String playerName = args[1];
-                        int amount = Integer.parseInt(args[2]);
-                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, "FROM GIVE COMMAND");
-                        sender.sendMessage(msg.given.replaceAll("(?ium)[{]Player[}]", playerName).replaceAll("(?ium)[{]Amount[}]", args[2]));
-                    } else {
-                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
-                        return false;
+                    if (!ArtxeNumber.isInteger(args[1])) {
+                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
+                        break;
                     }
-                    return true;
+
+                    if (TT.stream().noneMatch(args[2]::equalsIgnoreCase)) {
+                        sender.sendMessage(msg.invalidCommand);
+                        break;
+                    }
+                    CalculateTop.printTop(sender, CalculateTop.execute(args[2]), Integer.parseInt(args[1]));
+                    break;
                 default:
-                    if (ArtxeNumber.isInteger(args[2])) {
-                        String playerName = args[1];
-                        int amount = Integer.parseInt(args[2]);
-                        String notes = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
-                        TheSieuToc.getInstance().getDonorLog().writeLog(playerName, "0", "0", "GIVE", amount, true, notes);
-                        return true;
-                    } else {
-                        sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[2]));
-                        return false;
-                    }
+                    sender.sendMessage(msg.tooManyArgs);
             }
-        } else {
-            sender.sendMessage(msg.noPermission);
-            return false;
-        }
-    }
-
-    private boolean clearCache(CommandSender sender, Messages msg) {
-        if (sender.hasPermission("napthe.admin.cache.clear")) {
-            CalculateTop.clearCache();
-            sender.sendMessage(msg.cacheCleared);
-            return true;
-        } else {
-            sender.sendMessage(msg.noPermission);
-            return false;
-        }
-    }
-
-    private boolean reload(CommandSender sender, int arg, Messages msg) {
-        if (sender.hasPermission("napthe.admin.reload")) {
-            if (arg == 1) {
-                TheSieuToc.getInstance().reload((short) 0);
-                sender.sendMessage(msg.reloaded);
-                return true;
-            } else {
-                // TODO: add more reload type
-                sender.sendMessage(msg.tooManyArgs);
-                return false;
-            }
-        } else {
-            sender.sendMessage(msg.noPermission);
-            return false;
-        }
-    }
-
-    private boolean check(CommandSender sender, int arg, Messages msg){
-        if (sender.hasPermission("napthe.admin.check")) {
-            if (arg == 1) {
-                CardCheckTask.checkAll();
-                sender.sendMessage(msg.checked);
-                return true;
-            } else {
-                sender.sendMessage(msg.tooManyArgs);
-                return false;
-            }
-        } else {
-            sender.sendMessage(msg.noPermission);
-            return false;
-        }
-    }
-
-    private void chooseCard(CommandSender sender, boolean isPlayer, boolean hasAPIInfo, Ui ui, Messages msg) {
-        if (hasAPIInfo) {
-            if (isPlayer) {
-                final Player player = (Player) sender;
-                for (String card : TheSieuToc.getInstance().getSettings().cardEnable) {
-                    String text = ui.cardTypeText.replaceAll("(?ium)[{]Card_Type[}]", card);
-                    String hover = splitListToLine(ui.cardTypeHover).replaceAll("(?ium)[{]Card_Type[}]", card);
-                    BaseComponent[] message = new ComponentBuilder(text)
-                            .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
-                            .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0}", card)))
-                            .create();
-                    player.spigot().sendMessage(message);
-                }
-            } else {
-                sender.sendMessage(msg.onlyPlayer);
-            }
-        } else {
-            sender.sendMessage(msg.missingApiInfo);
-        }
-    }
-
-    private boolean top(CommandSender sender, String[] args) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Messages msg = TheSieuToc.getInstance().getMessages();
-                try {
-                    switch (args.length) {
-                        case 1:
-                            CalculateTop.printTop(sender, CalculateTop.execute("total"), 10);
-                            break;
-                        case 2:
-                            if (ArtxeNumber.isInteger(args[1])) {
-                                CalculateTop.printTop(sender, CalculateTop.execute("total"), Integer.parseInt(args[1]));
-                            } else {
-                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
-                            }
-                            break;
-                        case 3:
-                            if (ArtxeNumber.isInteger(args[1])) {
-                                if (Stream.of("TOTAL", "DAY", "MONTH", "YEAR").anyMatch(args[2]::equalsIgnoreCase)) {
-                                    CalculateTop.printTop(sender, CalculateTop.execute(args[2]), Integer.parseInt(args[1]));
-                                    break;
-                                }
-                            } else {
-                                sender.sendMessage(msg.notNumber.replaceAll("(?ium)[{]0[}]", args[1]));
-                                break;
-                            }
-                        default:
-                            sender.sendMessage(msg.tooManyArgs);
-                    }
-                } catch (Exception e) {
-                    TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
-                }
-            }
-        }.runTaskAsynchronously(TheSieuToc.getInstance());
+        });
         return true;
     }
 
@@ -303,8 +289,8 @@ public class Commands extends BukkitCommand {
             String text = ui.cardAmountText.replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             String hover = splitListToLine(ui.cardAmountHover).replaceAll("(?ium)[{]Card_Amount[}]", amount.toString());
             BaseComponent[] message = new ComponentBuilder(text)
-                    .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
-                    .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0} {1}", type, amount.toString())))
+                .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hover).create()))
+                .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, MessageFormat.format("/donate choose {0} {1}", type, amount)))
                     .create();
             player.spigot().sendMessage(message);
         }

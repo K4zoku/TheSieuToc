@@ -1,13 +1,15 @@
 package me.lxc.thesieutoc.internal;
 
+import me.lxc.thesieutoc.TheSieuToc;
 import me.lxc.thesieutoc.handlers.InputCardHandler;
 import org.json.simple.JSONObject;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DornorLogElement {
     private final Date date;
@@ -60,10 +62,15 @@ public class DornorLogElement {
         return json.toJSONString();
     }
 
-    public static DornorLogElement getFromLine(String line) throws ParseException {
+    public static DornorLogElement parse(String line) {
         String[] data = line.split("[|]");
         SimpleDateFormat parser = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-        Date date = parser.parse(data[0]);
+        Date date = null;
+        try {
+            date = parser.parse(data[0]);
+        } catch (ParseException e) {
+            date = new Date(0);
+        }
         String playerName = data[1].replace(" NAME ", "").trim();
         String serial = data[2].replace(" SERIAL ", "").trim();
         String pin = data[3].replace(" PIN ", "").trim();
@@ -74,5 +81,15 @@ public class DornorLogElement {
         String notes = data[7].replace(" NOTES ", "").trim();
 
         return new DornorLogElement(date, playerName, card, success, notes);
+    }
+
+    public static List<DornorLogElement> loadFromFile(File file) {
+        List<DornorLogElement> logContent = Collections.emptyList();
+        try (final BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+            logContent = br.lines().map(DornorLogElement::parse).collect(Collectors.toList());
+        } catch (IOException e) {
+            TheSieuToc.pluginDebug.debug("Cannot load log from file...");
+        }
+        return logContent;
     }
 }

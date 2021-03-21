@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -47,11 +46,8 @@ public class DonorLog {
         content.append(success);
         content.append(" | NOTES ");
         content.append(notes);
-        try {
-            CalculateTop.appendToCache(DornorLogElement.getFromLine(content.toString()));
-        } catch (ParseException e) {
-            TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
-        }
+        CalculateTop.appendToCache(DornorLogElement.parse(content.toString()));
+
         TheSieuToc.pluginDebug.debug("| Dornor Log [> " + content);
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(logFile, true), StandardCharsets.UTF_8)) {
             writer.append(content.toString());
@@ -62,13 +58,10 @@ public class DonorLog {
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createFile() {
         try {
-            if (!(logFile.exists())) {
-                logFile.getParentFile().mkdir();
-                logFile.createNewFile();
-            }
+            if (logFile.exists()) return;
+            if (!logFile.getParentFile().mkdir() || !logFile.createNewFile()) throw new IOException();
         } catch (IOException e) {
             TheSieuToc.getInstance().getLogger().log(Level.SEVERE, "An error occurred ", e);
         }
